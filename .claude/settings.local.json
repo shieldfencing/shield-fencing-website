@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.shieldfencing.com.au)",
+      "WebFetch(domain:www.meandu.com.au)",
+      "WebFetch(domain:www.meandu.com)",
+      "WebFetch(domain:shieldfencing.com.au)",
+      "Bash(npm install:*)",
+      "Bash(/usr/local/bin/npm install:*)",
+      "Read(//usr/local/**)",
+      "Read(//Users/shieldfencing/.nvm/versions/**)"
+    ]
+  }
+}
