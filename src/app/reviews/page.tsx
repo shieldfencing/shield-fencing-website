@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import TrustBar from '@/components/TrustBar'
 import ReviewCard from '@/components/ReviewCard'
+import ReviewsOrbital from '@/components/ReviewsOrbital'
 import { reviews } from '@/lib/reviews'
 
 export const metadata: Metadata = {
@@ -62,16 +63,32 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      {/* REVIEWS GRID */}
+      {/* ORBITAL REVIEWS */}
+      <section className="py-20 bg-brand-dark">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Our clients, in orbit
+            </h2>
+            <p className="text-white/50 text-sm">
+              Click any reviewer to read their full review
+            </p>
+          </div>
+          <ReviewsOrbital />
+        </div>
+      </section>
+
+      {/* CARD REVIEWS */}
       <section className="py-20 bg-brand-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-brand-dark mb-8">All reviews</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {reviews.map((r) => (
               <ReviewCard key={r.name} {...r} />
             ))}
           </div>
 
-          {/* Leave a review CTA */}
+          {/* Leave a review */}
           <div className="mt-16 bg-white border border-gray-200 rounded-2xl p-8 text-center max-w-xl mx-auto">
             <p className="text-2xl mb-2">⭐</p>
             <h3 className="text-xl font-bold mb-2">Had work done with us?</h3>

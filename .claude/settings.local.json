@@ -8,7 +8,8 @@
       "Bash(npm install:*)",
       "Bash(/usr/local/bin/npm install:*)",
       "Read(//usr/local/**)",
-      "Read(//Users/shieldfencing/.nvm/versions/**)"
+      "Read(//Users/shieldfencing/.nvm/versions/**)",
+      "WebFetch(domain:www.google.com)"
     ]
   }
 }

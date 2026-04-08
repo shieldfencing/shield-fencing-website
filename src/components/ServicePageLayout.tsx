@@ -52,8 +52,8 @@ export default function ServicePageLayout({
               <Link href="/get-a-quote" className="btn-primary">
                 Get a Free Quote
               </Link>
-              <Link href="/portfolio" className="btn-secondary">
-                View Portfolio
+              <Link href="/reviews" className="btn-secondary">
+                Read Reviews
               </Link>
             </div>
           </div>

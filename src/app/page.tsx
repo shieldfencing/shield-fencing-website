@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import TrustBar from '@/components/TrustBar'
 import ReviewCard from '@/components/ReviewCard'
+import SuburbsOrbital from '@/components/SuburbsOrbital'
 import { reviews } from '@/lib/reviews'
 
 export const metadata: Metadata = {
@@ -44,6 +45,13 @@ const services = [
   },
 ]
 
+const stats = [
+  { value: '5.0★', label: 'Google Rating' },
+  { value: '$10M', label: 'Public Liability Cover' },
+  { value: 'QBCC', label: 'Licensed & Compliant' },
+  { value: 'NER', label: 'Engineers Australia' },
+]
+
 const whyUs = [
   {
     title: 'Reliable & On Time',
@@ -63,86 +71,87 @@ const whyUs = [
   },
 ]
 
-const suburbs = [
-  'Brisbane City', 'Chermside', 'Carindale', 'Rochedale', 'Springwood',
-  'Logan', 'Ipswich', 'Redland Bay', 'Moreton Bay', 'North Lakes',
-  'Kallangur', 'Caboolture', 'Toowong', 'Indooroopilly', 'Sunnybank',
-]
 
 export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-screen bg-brand-dark flex items-center">
-        {/* Background pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 60px,
-              white 60px,
-              white 62px
-            )`,
-          }}
-        />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 lg:pt-32 lg:pb-28">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-brand-pink/20 text-brand-pink text-sm font-medium px-4 py-2 rounded-full mb-6">
-              <span className="w-2 h-2 bg-brand-pink rounded-full animate-pulse" />
-              Serving Greater Brisbane
+      <section className="relative min-h-screen bg-brand-dark flex items-center overflow-hidden">
+        {/* Vertical fence slat pattern */}
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute top-0 bottom-0 w-[2px] bg-white"
+              style={{ left: `${5 + i * 5}%` }}
+            />
+          ))}
+          <div className="absolute left-0 right-0 h-[2px] bg-white" style={{ top: '38%' }} />
+          <div className="absolute left-0 right-0 h-[2px] bg-white" style={{ top: '62%' }} />
+        </div>
+
+        {/* Pink glow */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-brand-pink/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 lg:pt-32 lg:pb-28 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left: headline */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-brand-pink/20 text-brand-pink text-sm font-medium px-4 py-2 rounded-full mb-8">
+                <span className="w-2 h-2 bg-brand-pink rounded-full animate-pulse" />
+                Serving Greater Brisbane
+              </div>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05]">
+                Protecting<br />
+                <span className="text-brand-pink">What Matters</span><br />
+                Most
+              </h1>
+              <p className="mt-6 text-lg text-white/60 max-w-md leading-relaxed">
+                Brisbane&apos;s trusted fencing specialists. Colorbond, timber, and
+                retaining wall solutions — built to last, delivered on time.
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Link href="/get-a-quote" className="btn-primary text-base">
+                  Get a Free Quote
+                </Link>
+                <Link href="/reviews" className="btn-secondary text-base">
+                  Read Reviews
+                </Link>
+              </div>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-              Protecting<br />
-              <span className="text-brand-pink">What Matters</span><br />
-              Most
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-white/60 max-w-xl leading-relaxed">
-              Brisbane&apos;s trusted fencing specialists. Colorbond, timber, and
-              retaining wall solutions built to last — delivered on time with clear
-              communication every step of the way.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Link href="/get-a-quote" className="btn-primary text-base">
-                Get a Free Quote
-              </Link>
-              <Link href="/portfolio" className="btn-secondary text-base">
-                View Our Work
-              </Link>
-            </div>
-            <div className="mt-12 flex flex-wrap gap-6 text-white/50 text-sm">
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-brand-pink" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                QBCC Licensed
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-brand-pink" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                $10M Insured
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-brand-pink" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                Civil Engineering Backed
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-brand-pink" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                5-Star Reviews
-              </span>
+
+            {/* Right: stats panel */}
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm"
+                >
+                  <p className="text-3xl font-bold text-white mb-1">{s.value}</p>
+                  <p className="text-sm text-white/50">{s.label}</p>
+                </div>
+              ))}
+              <div className="col-span-2 bg-brand-pink/10 border border-brand-pink/20 rounded-2xl p-6">
+                <p className="text-brand-pink font-semibold text-sm uppercase tracking-wider mb-2">
+                  Our promise
+                </p>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  We turn up when we say, communicate clearly, and finish the job properly.
+                  No surprises on price. No mess left behind.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 text-xs">
-          <span>Scroll</span>
-          <div className="w-px h-8 bg-white/20" />
+
+          {/* Credential strip */}
+          <div className="mt-16 pt-8 border-t border-white/10 flex flex-wrap gap-6 text-white/40 text-sm">
+            {['QBCC Licensed · Lic. 15574983', '$10M Public Liability', 'Engineers Australia NER', 'ABN 12 683 251 489'].map((c) => (
+              <span key={c} className="flex items-center gap-2">
+                <span className="w-1 h-1 bg-brand-pink rounded-full" />
+                {c}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -186,48 +195,35 @@ export default function Home() {
       </section>
 
       {/* WHY SHIELD FENCING */}
-      <section className="py-20 lg:py-28 bg-brand-light">
+      <section className="py-20 lg:py-28 bg-brand-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
-              <h2 className="section-title">
+              <h2 className="section-title text-white">
                 Built on trust.<br />
                 <span className="text-brand-pink">Delivered with care.</span>
               </h2>
-              <p className="mt-5 text-gray-500 leading-relaxed">
+              <p className="mt-5 text-white/60 leading-relaxed">
                 We started Shield Fencing with one goal: to be the kind of fencing
                 company we&apos;d want to hire ourselves. That means turning up on time,
                 communicating clearly, and doing the job right — every time.
               </p>
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {whyUs.map((item) => (
-                  <div key={item.title}>
-                    <div className="w-8 h-8 rounded-full bg-brand-pink/10 flex items-center justify-center mb-3">
-                      <svg className="w-4 h-4 text-brand-pink" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <h4 className="font-bold text-brand-dark mb-1">{item.title}</h4>
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-              <Link href="/about" className="btn-outline mt-10 inline-flex">
+              <Link href="/about" className="btn-primary mt-10 inline-flex">
                 About Shield Fencing
               </Link>
             </div>
-            {/* Placeholder for hero image */}
-            <div className="relative rounded-2xl overflow-hidden bg-brand-dark aspect-[4/3] flex items-center justify-center">
-              <div className="text-center text-white/20 p-8">
-                <svg className="w-16 h-16 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-sm">Job photos coming soon</p>
-              </div>
-              <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20">
-                <p className="text-white text-sm font-semibold">500+ jobs completed</p>
-                <p className="text-white/60 text-xs">across Greater Brisbane</p>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {whyUs.map((item) => (
+                <div key={item.title} className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                  <div className="w-7 h-7 rounded-full bg-brand-pink/20 flex items-center justify-center mb-4">
+                    <svg className="w-3.5 h-3.5 text-brand-pink" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <h4 className="font-bold text-white mb-2 text-sm">{item.title}</h4>
+                  <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -248,32 +244,25 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {reviews.map((r) => (
+            {[reviews[3], reviews[4], reviews[7], reviews[13]].map((r) => (
               <ReviewCard key={r.name} {...r} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* SUBURBS */}
-      <section className="py-16 bg-brand-light border-y border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-xl font-bold text-brand-dark mb-8">
-            Servicing Greater Brisbane
-          </h2>
-          <div className="flex flex-wrap justify-center gap-2">
-            {suburbs.map((s) => (
-              <span
-                key={s}
-                className="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-600 hover:border-brand-pink hover:text-brand-pink transition-colors"
-              >
-                {s}
-              </span>
-            ))}
-            <span className="px-4 py-2 bg-brand-pink/10 border border-brand-pink/30 rounded-full text-sm text-brand-pink font-medium">
-              + more
-            </span>
+      {/* SERVICE AREAS */}
+      <section className="py-20 bg-brand-dark">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Servicing all of <span className="text-brand-pink">Greater Brisbane</span>
+            </h2>
+            <p className="text-white/50 text-sm">
+              Click any region to see the suburbs we cover
+            </p>
           </div>
+          <SuburbsOrbital />
         </div>
       </section>
 

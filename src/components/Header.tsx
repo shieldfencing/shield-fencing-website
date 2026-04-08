@@ -9,7 +9,7 @@ const navLinks = [
   { label: 'Colorbond', href: '/colorbond' },
   { label: 'Timber', href: '/timber' },
   { label: 'Retaining Walls', href: '/retaining-walls' },
-  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Reviews', href: '/reviews' },
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
 ]
