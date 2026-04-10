@@ -40,6 +40,13 @@ export const metadata: Metadata = {
     description:
       'Brisbane\'s trusted fencing specialists. Colorbond, timber, and retaining wall solutions across Greater Brisbane.',
   },
+  icons: {
+    icon: [
+      { url: '/logos/svg/brandmark-pink.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/logos/svg/brandmark-pink.svg',
+    apple: '/logos/svg/brandmark-pink.svg',
+  },
   robots: {
     index: true,
     follow: true,
