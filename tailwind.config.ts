@@ -14,6 +14,7 @@ const config: Config = {
           pink: '#db0695',
           'pink-hover': '#c0057f',
           light: '#F6F4F6',
+          cream: '#F4EFE8',
         },
       },
       fontFamily: {

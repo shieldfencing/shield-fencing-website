@@ -22,21 +22,22 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Logo variant="white" />
-            <p className="mt-4 text-white/60 text-sm leading-relaxed max-w-sm">
+            <p className="mt-5 text-white/40 text-sm leading-relaxed max-w-sm">
               Brisbane&apos;s trusted fencing specialists. Protecting what matters
               most — your property, your family, your peace of mind.
             </p>
-            <div className="mt-6 flex flex-col gap-2 text-sm text-white/60">
-              <span>📞 <a href="tel:0412345678" className="hover:text-white transition-colors">Call us for a free quote</a></span>
-              <span>📍 Servicing Greater Brisbane, QLD</span>
-              <span>🏆 QBCC Licensed · ABN 12 683 251 489</span>
-              <span>🛡️ Insured up to $10 million</span>
+            <div className="mt-6 flex flex-col gap-2 text-sm text-white/40">
+              <span><a href="tel:0412345678" className="hover:text-white transition-colors">Call us for a free quote</a></span>
+              <span>Servicing Greater Brisbane, QLD</span>
+              <span>QBCC Licensed · Lic. 15574983</span>
+              <span>$10M Public Liability Insurance</span>
+              <span>ABN 12 683 251 489</span>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/40 mb-4">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
               Services
             </h3>
             <ul className="space-y-3">
@@ -44,7 +45,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-white text-sm transition-colors"
+                    className="text-white/60 hover:text-white text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -55,7 +56,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/40 mb-4">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
               Company
             </h3>
             <ul className="space-y-3">
@@ -63,7 +64,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-white text-sm transition-colors"
+                    className="text-white/60 hover:text-white text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -73,13 +74,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/40">
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/30">
           <p>© {new Date().getFullYear()} Shield Fencing Pty Ltd. All rights reserved.</p>
-          <p>
-            <Link href="/privacy" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-          </p>
+          <Link href="/privacy" className="hover:text-white transition-colors">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import TrustBar from './TrustBar'
 import ReviewCard from './ReviewCard'
 import { reviews } from '@/lib/reviews'
 
@@ -38,55 +37,51 @@ export default function ServicePageLayout({
   return (
     <>
       {/* HERO */}
-      <section className="bg-brand-dark pt-32 pb-20">
+      <section className="section-dark-hero pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-brand-pink font-semibold text-sm uppercase tracking-wider mb-4">
-              {heroTagline}
-            </p>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              {title}
-            </h1>
-            <p className="text-white/60 text-lg leading-relaxed mb-10">{subtitle}</p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/get-a-quote" className="btn-primary">
-                Get a Free Quote
-              </Link>
-              <Link href="/reviews" className="btn-secondary">
-                Read Reviews
-              </Link>
-            </div>
+          <p className="text-brand-pink font-semibold text-sm uppercase tracking-widest mb-6">
+            {heroTagline}
+          </p>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight max-w-4xl">
+            {title}
+          </h1>
+          <p className="text-white/50 text-lg leading-relaxed mt-8 max-w-xl">{subtitle}</p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <Link href="/get-a-quote" className="btn-primary w-fit">
+              Get a Free Quote
+            </Link>
+            <Link href="/reviews" className="btn-secondary w-fit">
+              Read Reviews
+            </Link>
           </div>
         </div>
       </section>
 
-      <TrustBar />
-
-      {/* INTRO */}
-      <section className="py-20 bg-white">
+      {/* INTRO — open, breathes on cream */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-gray-600 text-lg leading-relaxed">{intro}</p>
+            <p className="text-gray-600 text-xl leading-relaxed">{intro}</p>
           </div>
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section className="py-20 bg-brand-light">
+      {/* FEATURES — white panel */}
+      <section className="py-24 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-12">
-            Why choose Shield Fencing<br />
-            <span className="text-brand-pink">for this job?</span>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f) => (
-              <div key={f.title} className="card">
-                <div className="w-8 h-8 rounded-full bg-brand-pink/10 flex items-center justify-center mb-4">
-                  <svg className="w-4 h-4 text-brand-pink" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-brand-dark mb-2">{f.title}</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-16">
+            <h2 className="section-title">
+              Why choose Shield Fencing<br />
+              <span className="text-brand-pink">for this job?</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100">
+            {features.map((f, i) => (
+              <div key={f.title} className="bg-white p-8">
+                <span className="text-brand-pink text-xs font-mono tracking-widest mb-4 block">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="font-bold text-brand-dark mb-3">{f.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
@@ -94,22 +89,29 @@ export default function ServicePageLayout({
         </div>
       </section>
 
-      {/* VARIANTS */}
+      {/* VARIANTS — cream panel, alternates from white */}
       {variants && variants.length > 0 && (
-        <section className="py-20 bg-white">
+        <section className="py-24 section-cream-panel">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="section-title mb-4">Available options</h2>
-            <p className="text-gray-500 mb-12">
-              We&apos;ll help you choose the right product for your project and budget.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {variants.map((v) => (
-                <div key={v.name} className="card border-2 hover:border-brand-pink/40 transition-colors">
-                  <h3 className="text-xl font-bold mb-3">{v.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{v.desc}</p>
-                  <div className="border-t border-gray-100 pt-4 mt-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-16">
+              <h2 className="section-title">Available options.</h2>
+              <p className="text-gray-500 lg:text-right">
+                We&apos;ll help you choose the right product for your project and budget.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-300">
+              {variants.map((v, i) => (
+                <div key={v.name} className="bg-brand-cream p-10 flex flex-col gap-6">
+                  <span className="text-brand-pink text-xs font-mono tracking-widest">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-3">{v.name}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
+                  </div>
+                  <div className="pt-4 border-t border-gray-300">
                     <span className="text-xs font-semibold text-brand-pink uppercase tracking-wider">
-                      Best for:
+                      Best for
                     </span>
                     <p className="text-sm text-gray-600 mt-1">{v.best}</p>
                   </div>
@@ -120,11 +122,16 @@ export default function ServicePageLayout({
         </section>
       )}
 
-      {/* REVIEWS */}
-      <section className="py-20 bg-brand-light">
+      {/* REVIEWS — dark panel */}
+      <section className="py-24 section-dark-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-12">What clients say</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
+            <h2 className="section-title text-white">What clients say.</h2>
+            <Link href="/reviews" className="text-white/50 hover:text-white text-sm transition-colors underline underline-offset-4 shrink-0">
+              All reviews →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {reviews.slice(0, 4).map((r) => (
               <ReviewCard key={r.name} {...r} />
             ))}
@@ -132,14 +139,14 @@ export default function ServicePageLayout({
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20 bg-white">
+      {/* FAQ — white panel */}
+      <section className="py-24 section-white-panel">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-12">Frequently asked questions</h2>
-          <div className="space-y-6">
+          <h2 className="section-title mb-16">Common questions.</h2>
+          <div className="space-y-0 divide-y divide-gray-200">
             {faqs.map((faq) => (
-              <div key={faq.q} className="border-b border-gray-100 pb-6">
-                <h3 className="font-bold text-brand-dark mb-2">{faq.q}</h3>
+              <div key={faq.q} className="py-8">
+                <h3 className="font-bold text-brand-dark mb-3">{faq.q}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
               </div>
             ))}
@@ -147,17 +154,17 @@ export default function ServicePageLayout({
         </div>
       </section>
 
-      {/* RELATED BLOG */}
+      {/* RELATED BLOG — open */}
       {relatedPosts && relatedPosts.length > 0 && (
-        <section className="py-16 bg-brand-light">
+        <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold mb-8">Related articles</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-6">Related articles</h2>
             <div className="flex flex-wrap gap-4">
               {relatedPosts.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/blog/${p.slug}`}
-                  className="bg-white border border-gray-200 hover:border-brand-pink/40 rounded-xl px-5 py-4 text-sm font-medium text-brand-dark hover:text-brand-pink transition-all"
+                  className="border border-gray-200 hover:border-brand-pink/40 rounded-xl px-5 py-4 text-sm font-medium text-brand-dark hover:text-brand-pink transition-all"
                 >
                   {p.title} →
                 </Link>
@@ -167,18 +174,23 @@ export default function ServicePageLayout({
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-20 bg-brand-dark">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Ready to get a quote?
-          </h2>
-          <p className="text-white/60 text-lg mb-10">
-            Free, no-obligation. We&apos;ll get back to you fast.
-          </p>
-          <Link href="/get-a-quote" className="btn-primary text-base px-10 py-5">
-            Get a Free Quote →
-          </Link>
+      {/* CTA — open */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <h2 className="section-title">
+              Ready to get<br />
+              <span className="text-brand-pink">a quote?</span>
+            </h2>
+            <div>
+              <p className="text-gray-500 text-lg mb-8 leading-relaxed">
+                Free, no-obligation. We&apos;ll get back to you fast — usually same day.
+              </p>
+              <Link href="/get-a-quote" className="btn-primary text-base">
+                Get a Free Quote →
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>

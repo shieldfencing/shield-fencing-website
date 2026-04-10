@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       suburb,
+      referral,
     } = body
 
     // Basic validation
@@ -40,50 +41,88 @@ export async function POST(req: NextRequest) {
       .map((t) => projectLabels[t] ?? t)
       .join(', ')
 
-    const emailHtml = `
-      <h2>New Enquiry from Shield Fencing Website</h2>
-      <table cellpadding="8" style="border-collapse:collapse;width:100%;font-family:sans-serif;font-size:14px;">
-        <tr style="background:#f6f4f6">
-          <td><strong>Name</strong></td>
-          <td>${name}</td>
-        </tr>
+    const row = (label: string, value: string) => value ? `
+      <tr>
+        <td style="padding:12px 0;border-bottom:1px solid #e5e5e5;vertical-align:top;">
+          <span style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.05em;">${label}</span><br/>
+          <span style="font-size:14px;color:#111;margin-top:3px;display:block;">${value}</span>
+        </td>
+      </tr>` : ''
+
+    const emailHtml = `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f0ede8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0ede8;padding:32px 16px;">
+    <tr><td align="center">
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+
+        <!-- Header -->
         <tr>
-          <td><strong>Phone</strong></td>
-          <td><a href="tel:${phone}">${phone}</a></td>
+          <td style="padding:24px 28px 16px;border-bottom:1px solid #e5e5e5;">
+            <p style="margin:0;font-size:11px;font-weight:700;color:#db0695;text-transform:uppercase;letter-spacing:0.08em;">New Enquiry</p>
+            <p style="margin:6px 0 0;font-size:20px;font-weight:700;color:#111;">Shield Fencing</p>
+          </td>
         </tr>
-        <tr style="background:#f6f4f6">
-          <td><strong>Email</strong></td>
-          <td><a href="mailto:${email}">${email}</a></td>
-        </tr>
+
+        <!-- Project details -->
         <tr>
-          <td><strong>Suburb</strong></td>
-          <td>${suburb || '—'}</td>
+          <td style="padding:4px 28px 0;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              ${row('What type of project are you planning?', projectList)}
+              ${fencingLength ? row('Approximate total fencing length', fencingLength) : ''}
+              ${wallLength ? row('Approximate total wall length', wallLength) : ''}
+              ${propertyRelation ? row('Property relation', propertyRelation) : ''}
+              ${sharedBoundary ? row('Shared boundary', sharedBoundary === 'yes' ? 'Yes — shared boundary' : sharedBoundary === 'no' ? 'No — fully within my property' : 'Not sure') : ''}
+              ${timeline ? row('When are you hoping to have your fencing project started?', timeline) : ''}
+              ${priority ? row('Beyond the quality of the fence itself, what matters most to you when choosing a fencing contractor?', priority) : ''}
+              ${details ? row('Project details (optional)', details) : ''}
+              ${body.priceAlignment ? row('Does this general investment range align with what you had in mind?', body.priceAlignment) : ''}
+              ${referral ? row('How did you hear about us?', referral) : ''}
+            </table>
+          </td>
         </tr>
-        <tr style="background:#f6f4f6">
-          <td><strong>Project Types</strong></td>
-          <td>${projectList}</td>
-        </tr>
-        ${fencingLength ? `<tr><td><strong>Fencing Length</strong></td><td>${fencingLength}</td></tr>` : ''}
-        ${wallLength ? `<tr style="background:#f6f4f6"><td><strong>Wall Length</strong></td><td>${wallLength}</td></tr>` : ''}
+
+        <!-- Contact details (2-col) -->
         <tr>
-          <td><strong>Property Relation</strong></td>
-          <td>${propertyRelation || '—'}</td>
+          <td style="padding:16px 28px 24px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e5e5e5;padding-top:16px;">
+              <tr>
+                <td width="50%" style="vertical-align:top;padding-bottom:12px;">
+                  <span style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.05em;">First name</span><br/>
+                  <span style="font-size:14px;color:#111;margin-top:3px;display:block;">${name}</span>
+                </td>
+                <td width="50%" style="vertical-align:top;padding-bottom:12px;">
+                  <span style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.05em;">Phone number</span><br/>
+                  <a href="tel:${phone}" style="font-size:14px;color:#111;text-decoration:none;margin-top:3px;display:block;">${phone}</a>
+                </td>
+              </tr>
+              <tr>
+                <td width="50%" style="vertical-align:top;">
+                  <span style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.05em;">Email</span><br/>
+                  <a href="mailto:${email}" style="font-size:14px;color:#db0695;text-decoration:none;margin-top:3px;display:block;">${email}</a>
+                </td>
+                <td width="50%" style="vertical-align:top;">
+                  <span style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.05em;">Suburb</span><br/>
+                  <span style="font-size:14px;color:#111;margin-top:3px;display:block;">${suburb || '—'}</span>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
-        <tr style="background:#f6f4f6">
-          <td><strong>Shared Boundary</strong></td>
-          <td>${sharedBoundary || '—'}</td>
-        </tr>
+
+        <!-- Footer -->
         <tr>
-          <td><strong>Timeline</strong></td>
-          <td>${timeline || '—'}</td>
+          <td style="padding:12px 28px;border-top:1px solid #e5e5e5;text-align:center;">
+            <span style="font-size:12px;color:#aaa;">Sent from <strong style="color:#888;">Shield Fencing</strong></span>
+          </td>
         </tr>
-        <tr style="background:#f6f4f6">
-          <td><strong>Priority</strong></td>
-          <td>${priority || '—'}</td>
-        </tr>
-        ${details ? `<tr><td><strong>Additional Details</strong></td><td>${details}</td></tr>` : ''}
+
       </table>
-    `
+    </td></tr>
+  </table>
+</body>
+</html>`
 
     const apiKey = process.env.RESEND_API_KEY
 
@@ -98,7 +137,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           from: 'Shield Fencing Website <noreply@shieldfencing.com.au>',
           to: [TO_EMAIL],
-          subject: `New Enquiry: ${name} — ${projectList}`,
+          subject: `${name} · ${suburb || '—'} · ${phone} · ${email}`,
           html: emailHtml,
           reply_to: email,
         }),

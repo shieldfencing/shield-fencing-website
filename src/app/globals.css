@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-white text-brand-dark antialiased;
+    @apply bg-brand-cream text-brand-dark antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -26,11 +26,11 @@
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center border-2 border-brand-pink text-brand-pink font-semibold px-8 py-4 rounded-full hover:bg-brand-pink hover:text-white transition-all duration-200;
+    @apply inline-flex items-center justify-center border-2 border-brand-dark text-brand-dark font-semibold px-8 py-4 rounded-full hover:bg-brand-dark hover:text-white transition-all duration-200;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
   }
 
   .section-subtitle {
@@ -61,5 +61,42 @@
   }
   .prose-blog a {
     @apply text-brand-pink underline;
+  }
+  .prose-blog table {
+    @apply w-full border-collapse text-sm mb-6;
+  }
+  .prose-blog table th {
+    @apply text-left font-semibold text-brand-dark bg-brand-cream px-4 py-3 border border-gray-200;
+  }
+  .prose-blog table td {
+    @apply px-4 py-3 text-gray-600 border border-gray-200;
+  }
+  .prose-blog table tr:nth-child(even) td {
+    @apply bg-gray-50;
+  }
+  .prose-blog hr {
+    @apply border-gray-200 my-8;
+  }
+
+  /* Rounded panels floating on cream background */
+  .section-dark-hero {
+    background: #130314;
+    border-radius: 0 0 3rem 3rem;
+    margin-bottom: 0.5rem;
+  }
+  .section-dark-panel {
+    background: #130314;
+    border-radius: 3rem;
+    margin: 0.5rem 1rem;
+  }
+  .section-white-panel {
+    background: #ffffff;
+    border-radius: 3rem;
+    margin: 0.5rem 1rem;
+  }
+  .section-cream-panel {
+    background: #F4EFE8;
+    border-radius: 3rem;
+    margin: 0.5rem 1rem;
   }
 }
