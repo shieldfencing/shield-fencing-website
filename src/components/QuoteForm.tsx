@@ -255,6 +255,7 @@ export default function QuoteForm() {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [contactTouched, setContactTouched] = useState<Record<string, boolean>>({})
+  const [referralTouched, setReferralTouched] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
 
   const steps = getSteps(data)
@@ -627,7 +628,7 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">How did you hear about us?</h2>
-            <p className="text-gray-400 text-sm mb-6">Almost done, just one last question.</p>
+            <p className="text-gray-400 text-sm mb-6">Almost done, just one last question. <span className="text-red-400">*</span></p>
             <div className="space-y-3">
               {['Google', 'hipages', 'Referral', 'Repeat customer', 'Social media'].map((opt) => (
                 <OptionButton
@@ -638,6 +639,9 @@ export default function QuoteForm() {
                 />
               ))}
             </div>
+            {referralTouched && !data.referral && (
+              <p className="mt-3 text-xs text-red-500">Please select how you heard about us.</p>
+            )}
             {error && (
               <div className="mt-4 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600">{error}</div>
             )}
@@ -667,9 +671,10 @@ export default function QuoteForm() {
         {isLast ? (
           <button
             type="button"
-            disabled={submitting}
+            disabled={submitting || (!data.referral && currentStep === 'referral')}
             onClick={() => {
               setContactTouched({ name: true, phone: true, email: true, suburb: true })
+              setReferralTouched(true)
               if (canAdvance()) submit()
             }}
             className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"

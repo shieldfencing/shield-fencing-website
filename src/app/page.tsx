@@ -47,9 +47,9 @@ export default function Home() {
 
         {/* Scrolling credential strip */}
         <div className="mt-16 border-t border-white/10 pt-8 overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap gap-12">
-            {[...credentials, ...credentials].map((c, i) => (
-              <span key={i} className="text-white/30 text-sm flex items-center gap-3 shrink-0">
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...credentials, ...credentials, ...credentials, ...credentials].map((c, i) => (
+              <span key={i} className="text-white/30 text-sm flex items-center gap-3 shrink-0 mx-6">
                 <span className="w-1 h-1 rounded-full bg-brand-pink inline-block" />
                 {c}
               </span>
@@ -153,10 +153,10 @@ export default function Home() {
             </div>
             <div className="space-y-0 divide-y divide-gray-200">
               {[
-                { title: 'Reliable and On Time', desc: 'We show up when we say we will. Clear communication from quote to completion, no surprises.' },
-                { title: 'Backed by a Chartered Civil Engineer', desc: 'CPEng-qualified leadership bringing a disciplined, detail-focused approach to every project.' },
-                { title: 'Fully Licensed and Insured', desc: 'QBCC License No 15574983 with $10M public liability. You are completely protected.' },
-                { title: 'Great Value', desc: 'Competitive pricing with no corners cut. Quality workmanship at a fair price, every time.' },
+                { title: 'Unmatched Reliability', desc: 'We show up on time and we finish on schedule. Your time is valuable and we treat it that way.' },
+                { title: 'Ultimate Customer Care', desc: 'Every project is handled with genuine care and attention. We treat your property as if it were our own.' },
+                { title: 'Unwavering Integrity', desc: 'We do what we say we will do. No hidden costs, no shortcuts, no excuses. If something is not right, we fix it.' },
+                { title: 'Clear Communication', desc: 'Clear updates from quote to final inspection. You will always know what is happening and when we are arriving.' },
               ].map((item) => (
                 <div key={item.title} className="py-6 flex gap-6">
                   <svg className="w-5 h-5 text-brand-pink shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">

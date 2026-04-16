@@ -80,9 +80,9 @@ export default function ReviewCard({
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={() => setModalOpen(false)}
         >
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
           <div
-            className="relative bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl"
+            className="relative bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl max-h-[85vh] overflow-y-auto overscroll-contain touch-pan-y"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex gap-0.5 mb-5">
