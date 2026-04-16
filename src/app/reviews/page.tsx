@@ -50,7 +50,7 @@ export default function ReviewsPage() {
       {/* ALL REVIEWS */}
       <section className="py-24 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[740px] overflow-hidden">
+          <div className="flex justify-center gap-6 max-h-[740px] overflow-hidden">
             <TestimonialsColumn reviews={reviews.slice(0, 8)} duration={28} />
             <TestimonialsColumn reviews={reviews.slice(8, 16)} className="hidden md:block" duration={34} />
             <TestimonialsColumn reviews={reviews.slice(16)} className="hidden lg:block" duration={22} />
