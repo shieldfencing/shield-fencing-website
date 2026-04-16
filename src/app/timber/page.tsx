@@ -12,72 +12,112 @@ export default function TimberPage() {
   return (
     <ServicePageLayout
       heroTagline="Timber Fencing"
-      title="Natural beauty. Lasting character."
-      subtitle="Hardwood and treated pine timber fencing for Brisbane homes. When you want privacy, warmth, and a fence that ages beautifully — timber is the answer."
-      intro="There's something a Colorbond® fence just can't replicate — the warmth and character of real timber. Whether it's a classic paling fence, a privacy screen, or a feature garden fence, timber brings a natural look that suits Queensland homes and gardens perfectly. We work with treated pine for budget-conscious jobs and hardwood for premium longevity. Every post is sunk properly, every rail is level, and every paling is fixed straight."
+      title={<>Natural beauty. <span className="text-brand-pink">Lasting character.</span></>}
+      subtitle="Built to suit Queensland homes, our timber fencing solutions offer timeless appeal, durable construction and flexible styles to match any property."
+      intro="There is something a Colorbond® fence just cannot replicate: the warmth and character of real timber. Whether it is a standard butted fence, a lapped and capped privacy fence, or a good neighbour design for a shared boundary, timber brings a natural look that suits Queensland homes and gardens perfectly. We work with treated pine for budget-conscious jobs and hardwood for premium longevity. Every post is sunk properly, every rail is level, and every paling is fixed straight."
       features={[
         {
-          title: 'Hardwood & Treated Pine',
+          title: 'Standard Butted, Lapped and Capped, Good Neighbour',
+          desc: 'We build all popular timber fence styles to suit your property and your preferences.',
+        },
+        {
+          title: 'Hardwood and Treated Pine',
           desc: 'We work with both species depending on your budget and requirements. Hardwood for maximum longevity; treated pine as a cost-effective alternative.',
         },
         {
           title: 'Classic Queensland Style',
-          desc: 'Timber fencing suits the character of most Brisbane homes — especially older Queenslanders and those with established gardens.',
+          desc: 'Timber fencing suits the character of most Brisbane homes, especially older Queenslanders and those with established gardens.',
         },
         {
-          title: 'Private & Secure',
+          title: 'Private and Secure',
           desc: 'Full-height paling fences offer excellent privacy and a solid boundary. Ideal for families with kids or pets.',
         },
         {
-          title: 'Customisable',
-          desc: 'Picket styles, paling gaps, heights, and finishes can all be adjusted to suit your home\'s style and your preferences.',
-        },
-        {
           title: 'Properly Set Posts',
-          desc: 'Posts concreted deep into the ground for structural integrity. No leaning, no movement — built to stay straight for years.',
+          desc: 'Posts concreted deep into the ground for structural integrity. No leaning, no movement, built to stay straight for years.',
         },
         {
           title: 'QBCC Licensed',
-          desc: 'All work compliant with Queensland building codes. Lic. No. 15574983. Fully insured to $10 million.',
+          desc: 'All work compliant with Queensland building codes. License No 15574983. Fully insured to $10 million.',
         },
       ]}
       variants={[
         {
-          name: 'Treated Pine',
-          desc: 'H4-treated softwood that resists rot, termites, and moisture. A cost-effective option that still looks great and lasts well.',
-          best: 'Budget-conscious projects, garden fences, low-height fencing',
+          name: 'Standard Butted',
+          desc: 'Clean and classic, this style uses vertical palings with a slight gap between each. It is commonly used for back fences and boundary lines.',
+          best: 'Simple and timeless, ideal for private yards',
         },
         {
-          name: 'Hardwood Timber',
-          desc: 'Dense native hardwood — significantly stronger and more durable than pine. Stands up to Brisbane weather for decades.',
-          best: 'Long-term investment, taller fences, premium properties',
+          name: 'Lapped and Capped',
+          desc: 'For a more solid and polished finish, this style overlaps each paling and adds a smooth capping piece across the top. It offers full privacy with a neat, finished look.',
+          best: 'Full privacy, strong and long lasting, side and front fences',
         },
         {
-          name: 'Merbau / Feature Timber',
-          desc: 'Rich reddish-brown tropical hardwood often used for contemporary screen fencing, deck balustrades, and architectural privacy screens.',
-          best: 'Front fences, feature screening, pool surrounds',
+          name: 'Good Neighbour',
+          desc: 'This double sided design looks the same from both sides. It is a great choice for shared boundaries where both neighbours want a clean and balanced result.',
+          best: 'Shared boundaries, neat on both sides',
         },
       ]}
       faqs={[
         {
-          q: 'How long does timber fencing last in Brisbane?',
-          a: 'Treated pine fencing typically lasts 10–15 years with good maintenance. Hardwood timber fencing can last 20–30 years or more. Regular oiling or painting extends the life significantly.',
+          q: 'Do you offer free quotes for timber fencing?',
+          a: 'Yes. We provide free quotes for suitable projects based on scope and availability. All enquiries are reviewed before a quote or site visit is arranged.',
         },
         {
-          q: 'Does timber fencing need maintenance?',
-          a: 'Yes. Timber should be painted, stained, or oiled every few years to protect it from UV and moisture. It\'s more maintenance than Colorbond® but many homeowners prefer the look and feel.',
+          q: 'How much does timber fencing cost?',
+          a: 'Pricing depends on fence length, height, timber selection, ground conditions, and access. We provide tailored pricing once your project has been assessed.',
         },
         {
-          q: 'Is timber fencing cheaper than Colorbond®?',
-          a: 'Treated pine is generally comparable or slightly cheaper than Colorbond® per metre. Hardwood is more expensive. However, over 20 years, Colorbond® often works out cheaper due to lower maintenance costs.',
+          q: 'Do you do repairs or small timber jobs?',
+          a: 'No. We focus on full fence installations. We do not take on repairs, partial sections, or isolated panel replacements.',
         },
         {
-          q: 'Can you match the height and style of my existing timber fence?',
-          a: 'In most cases yes. We\'ll match paling style, height, and material as closely as possible when replacing or extending an existing fence.',
+          q: 'Can I supply my own timber or materials?',
+          a: 'No. We supply all materials to ensure quality, consistency, and durability.',
         },
         {
-          q: 'Can timber fencing be painted or stained?',
-          a: 'Absolutely. Treated pine takes paint and stain very well. Hardwood is often left natural or with a clear/tinted oil. We can advise on the best finish for your situation.',
+          q: 'What timber do you use?',
+          a: 'We typically use hardwood posts with treated pine rails and palings for a consistent, durable result.',
+        },
+        {
+          q: 'Is timber perfectly straight and uniform?',
+          a: 'No. Timber is a natural material, so some variation, minor bends, and movement are expected.',
+        },
+        {
+          q: 'Can everything be done in hardwood?',
+          a: 'Hardwood can be used where required, but our standard system is designed to balance strength, consistency, and long-term performance.',
+        },
+        {
+          q: 'Will the timber be wet when installed?',
+          a: 'Timber can contain natural moisture at installation. As it settles, minor shrinkage, gaps, or movement may occur.',
+        },
+        {
+          q: 'Do you need access to the site?',
+          a: 'Yes. Clear access along the fence line is required. Access limitations may affect feasibility or require adjustments.',
+        },
+        {
+          q: 'Will installation affect my lawn or garden?',
+          a: 'Some disturbance along the fence line is expected due to post hole digging. We take care during works and aim to leave the site tidy.',
+        },
+        {
+          q: 'How is the fence set out (stepped or raked)?',
+          a: 'Fence layout depends on site conditions and agreed scope. This is confirmed during quoting.',
+        },
+        {
+          q: 'Can you match an existing timber fence?',
+          a: 'We can match general style and height, but exact matches may vary due to natural timber variation and weathering.',
+        },
+        {
+          q: 'Do you deal directly with neighbours?',
+          a: 'The project is managed with the client listed on the enquiry or quote. For shared boundaries, coordination with neighbours is handled by the client.',
+        },
+        {
+          q: 'Does timber fencing require maintenance?',
+          a: 'Yes. Timber fencing benefits from painting, staining, or oiling and ongoing upkeep over time.',
+        },
+        {
+          q: 'How long does timber fencing last?',
+          a: 'Lifespan depends on materials, exposure, and maintenance. With proper care, timber fencing can provide long-term performance.',
         },
       ]}
       relatedPosts={[

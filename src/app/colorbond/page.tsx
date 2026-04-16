@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import ReviewCard from '@/components/ReviewCard'
+import FaqAccordion from '@/components/FaqAccordion'
 import { reviews } from '@/lib/reviews'
 
 export const metadata: Metadata = {
@@ -11,12 +12,12 @@ export const metadata: Metadata = {
 }
 
 const features = [
-  { num: '01', title: '22 Colour Options', desc: 'Choose from the full COLORBOND® palette to complement your home\'s style — from classic Monument to warm Paperbark.' },
-  { num: '02', title: 'Low Maintenance', desc: 'Unlike timber, Colorbond® doesn\'t rot, warp, or need painting. A rinse with a hose is all it takes to keep it looking sharp.' },
+  { num: '01', title: '22 Colour Options', desc: 'Choose from the full COLORBOND® palette to complement your home\'s style, from classic Monument to warm Paperbark.' },
+  { num: '02', title: 'Low Maintenance', desc: 'Unlike timber, Colorbond® does not rot, warp, or need painting. A rinse with a hose is all it takes to keep it looking sharp.' },
   { num: '03', title: 'Built for Queensland', desc: 'Steel construction handles heat, humidity, and heavy rain without buckling. Designed and tested for Australian conditions.' },
-  { num: '04', title: 'Straight & Plumb', desc: 'Every panel installed level and aligned. We take pride in the finish — the kind of job you\'d be happy for your neighbours to see.' },
-  { num: '05', title: 'Fast Installation', desc: 'Most standard residential jobs completed in 1–2 days. Minimal disruption to your property and daily routine.' },
-  { num: '06', title: 'QBCC Licensed', desc: 'All work compliant with Queensland building codes. Lic. No. 15574983. Fully insured to $10 million.' },
+  { num: '04', title: 'Straight and Plumb', desc: 'Every panel installed level and aligned. We take pride in the finish, the kind of job you would be happy for your neighbours to see.' },
+  { num: '05', title: 'Fast Installation', desc: 'Efficient installation with minimal disruption to your property and daily routine.' },
+  { num: '06', title: 'QBCC Licensed', desc: 'All work compliant with Queensland building codes. License No 15574983. Fully insured to $10 million.' },
 ]
 
 const profiles = [
@@ -47,11 +48,18 @@ const colours = [
 ]
 
 const faqs = [
-  { q: 'How much does Colorbond® fencing cost in Brisbane?', a: 'Pricing depends on the length, height, terrain, and style. Most residential jobs range from $80–$130 per metre supply and install. Get a free quote for an accurate price for your specific project.' },
-  { q: 'How long does Colorbond® fencing last?', a: 'Colorbond® steel fencing is engineered to last 20–30+ years with minimal maintenance. The factory-applied paint is UV-resistant and won\'t flake or peel under normal conditions.' },
-  { q: 'Do I need council approval for a Colorbond® fence?', a: 'In most Brisbane cases, standard boundary fencing under 2m doesn\'t require council approval. However rules vary by council and location — we can advise based on your address.' },
-  { q: 'Can you replace just part of an existing fence?', a: 'Yes. We can replace sections of damaged or old fencing without replacing the whole run. We\'ll match colours and styles as closely as possible.' },
-  { q: 'Do you handle dividing fences with neighbours?', a: 'Yes. We\'re experienced with shared boundary fences and can advise on the Neighbourhood Disputes (Dividing Fences and Trees) Act process in Queensland.' },
+  { q: 'Do you offer free quotes?', a: 'Yes. We provide free quotes for suitable projects based on scope and availability. Each enquiry is reviewed to ensure the right approach is taken before a quote or site visit is arranged.' },
+  { q: 'How much does Colorbond® fencing cost?', a: 'Pricing varies depending on fence length and height, ground conditions and access, and site-specific requirements. We provide tailored pricing once your project has been properly assessed.' },
+  { q: 'Do you reuse existing panels or materials?', a: 'No. We install new materials to ensure consistency, durability, and finish quality across the entire fence. Reusing existing panels often leads to mismatched appearance and reduced lifespan.' },
+  { q: 'Do you handle full fence replacements?', a: 'Yes. We regularly remove and replace existing fences as part of a complete installation. This ensures a clean, consistent result across the full boundary.' },
+  { q: 'What happens after I submit an enquiry?', a: 'Once submitted, your enquiry is reviewed, additional details may be requested if required, and a site visit or quote is arranged where appropriate. This ensures the right solution is provided from the start.' },
+  { q: 'How soon can you start?', a: 'Start times vary depending on current workload, materials, and project requirements. Availability is confirmed after your project has been reviewed.' },
+  { q: 'Do you deal directly with neighbours?', a: 'The project is managed directly with the client listed on the enquiry or quote. If the fence is shared, coordination with neighbours is handled by the client prior to proceeding.' },
+  { q: 'Do you need access to the site?', a: 'Yes. Clear access along the fence line is required for installation. Access limitations may affect feasibility or require adjustments to the scope.' },
+  { q: 'Will installation affect my lawn or garden?', a: 'Fence installation involves digging post holes, so some disturbance along the fence line is expected. We take care during works and aim to leave the site tidy on completion.' },
+  { q: 'What should I expect in the final finish?', a: 'We aim for a clean, consistent installation across the full fence line. As with all construction work, minor handling marks can occur during installation, however these are addressed as part of our quality process.' },
+  { q: 'Do all Colorbond® fences look the same?', a: 'No. Results can vary depending on materials, installation methods, and workmanship. We use consistent supply and installation practices to ensure a uniform finish across the project.' },
+  { q: 'Do I need council approval?', a: 'In most cases, standard boundary fencing does not require approval. Requirements can vary depending on location and height. We can advise based on your property.' },
 ]
 
 export default function ColorbondPage() {
@@ -71,7 +79,7 @@ export default function ColorbondPage() {
             Durable, low-maintenance Colorbond® steel fencing installed by QBCC-licensed specialists across Greater Brisbane. Available in 22 Colorbond® colours to match your home.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link href="/get-a-quote" className="btn-primary w-fit">Get a Free Quote</Link>
+            <Link href="/get-a-quote" className="btn-primary w-fit">Enquire Now</Link>
             <Link href="/reviews" className="btn-secondary w-fit">Read Reviews</Link>
           </div>
         </div>
@@ -81,7 +89,7 @@ export default function ColorbondPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gray-600 text-xl leading-relaxed max-w-3xl">
-            Colorbond® steel fencing is the go-to choice for Brisbane homeowners — and for good reason. It&apos;s tough, it looks great, it doesn&apos;t rot or warp, and it handles Queensland&apos;s harsh climate without a second thought. At Shield Fencing, we install Colorbond® fences that are straight, plumb, and built to last.
+            Colorbond® steel fencing is the go-to choice for Brisbane homeowners, and for good reason. It is tough, it looks great, it does not rot or warp, and it handles Queensland&apos;s harsh climate without a second thought. At Shield Fencing, we install Colorbond® fences that are straight, plumb, and built to last.
           </p>
         </div>
       </section>
@@ -188,14 +196,7 @@ export default function ColorbondPage() {
       <section className="py-24 section-cream-panel">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title mb-16">Common questions.</h2>
-          <div className="divide-y divide-gray-100">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="py-8">
-                <h3 className="font-bold text-brand-dark mb-3">{faq.q}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion faqs={faqs} />
         </div>
       </section>
 
@@ -220,10 +221,10 @@ export default function ColorbondPage() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <h2 className="section-title">Ready to get<br /><span className="text-brand-pink">a quote?</span></h2>
+            <h2 className="section-title">Thinking About a<br /><span className="text-brand-pink">Colorbond® Fence?</span></h2>
             <div>
-              <p className="text-gray-500 text-lg mb-8 leading-relaxed">Free, no-obligation. We&apos;ll get back to you fast — usually same day.</p>
-              <Link href="/get-a-quote" className="btn-primary text-base">Get a Free Quote →</Link>
+              <p className="text-gray-500 text-lg mb-8 leading-relaxed">We will keep things simple, help you choose what works best for your space, and deliver a clean, lasting result with care and consistency.</p>
+              <Link href="/get-a-quote" className="btn-primary text-base">Enquire Now &rarr;</Link>
             </div>
           </div>
         </div>

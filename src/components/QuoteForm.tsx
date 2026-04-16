@@ -156,7 +156,7 @@ function SuburbAutocomplete({
         className={`w-full rounded-xl border-2 px-4 py-3 text-sm focus:outline-none transition-colors ${
           error ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-brand-pink'
         }`}
-        placeholder="e.g. Algester"
+        placeholder="e.g. Algester, QLD"
         value={value}
         onChange={(e) => handleInput(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -357,7 +357,7 @@ export default function QuoteForm() {
             <p className="text-gray-400 text-sm mb-6">Select all that apply.</p>
             <div className="space-y-3">
               <OptionButton label="Retaining wall" sub="Up to 1m height (approx. 5 sleepers)" selected={data.projectTypes.includes('retaining-wall')} onClick={() => toggleProject('retaining-wall')} multi />
-              <OptionButton label="Colorbond® fence" selected={data.projectTypes.includes('colorbond')} onClick={() => toggleProject('colorbond')} multi />
+              <OptionButton label="Colorbond® Steel fence" selected={data.projectTypes.includes('colorbond')} onClick={() => toggleProject('colorbond')} multi />
               <OptionButton label="Timber fence" selected={data.projectTypes.includes('timber')} onClick={() => toggleProject('timber')} multi />
             </div>
           </div>
@@ -418,8 +418,8 @@ export default function QuoteForm() {
             <p className="text-gray-400 text-sm mb-6">This helps us understand access and coordination required.</p>
             <div className="space-y-3">
               {[
-                { label: 'No — fully within my property', value: 'no' },
-                { label: 'Yes — shared boundary', value: 'yes' },
+                { label: 'No, fully within my property', value: 'no' },
+                { label: 'Yes, shared boundary', value: 'yes' },
                 { label: 'Not sure', value: 'unsure' },
               ].map((opt) => (
                 <OptionButton key={opt.value} label={opt.label} selected={data.sharedBoundary === opt.value}
@@ -433,9 +433,9 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">When are you hoping to start?</h2>
-            <p className="text-gray-400 text-sm mb-6">We&apos;ll use this to check availability and prioritise your quote.</p>
+            <p className="text-gray-400 text-sm mb-6">This helps us tailor our approach to suit your project timing.</p>
             <div className="space-y-3">
-              {['ASAP', '2–4 weeks', '4–8 weeks', '2–3 months', 'No specific timeframe'].map((opt) => (
+              {['As soon as possible', '2\u20134 weeks', '4\u20138 weeks', '2\u20133 months', 'No specific timeframe'].map((opt) => (
                 <OptionButton key={opt} label={opt} selected={data.timeline === opt}
                   onClick={() => selectAndAdvance((d) => ({ ...d, timeline: opt }))} />
               ))}
@@ -447,13 +447,13 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">What matters most to you when choosing a contractor?</h2>
-            <p className="text-gray-400 text-sm mb-6">This helps us tailor how we follow up with you.</p>
+            <p className="text-gray-400 text-sm mb-6">Quality is a given. Select what else matters most to you.</p>
             <div className="space-y-3">
               {[
-                { label: 'Reliability and clear communication', sub: "I want to know exactly what's happening and when" },
-                { label: 'Confidence in quality', sub: 'I want the job done right with no issues' },
-                { label: 'Best overall value', sub: 'I want quality work at a fair price' },
-                { label: 'Understanding typical costs', sub: "I'm still in the research phase" },
+                { label: 'Reliability and clear communication', sub: "I want to know exactly what is happening and when" },
+                { label: 'Confidence in workmanship', sub: 'I want the job done right with no issues' },
+                { label: 'Best overall value', sub: 'I want great work at a fair price' },
+                { label: 'Understanding typical costs', sub: "I am still in the research phase" },
               ].map((opt) => (
                 <OptionButton key={opt.label} label={opt.label} sub={opt.sub} selected={data.priority === opt.label}
                   onClick={() => selectAndAdvance((d) => ({ ...d, priority: opt.label }))} />
@@ -466,10 +466,10 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">Anything else we should know?</h2>
-            <p className="text-gray-400 text-sm mb-6">Optional — mention access issues, colour preferences, existing fencing, or any other details.</p>
+            <p className="text-gray-400 text-sm mb-6">The more detail you can share, the better we can understand your project before arranging the next step.</p>
             <textarea
               className="w-full h-36 rounded-xl border-2 border-gray-200 px-4 py-3 text-sm text-brand-dark placeholder-gray-400 focus:outline-none focus:border-brand-pink transition-colors resize-none"
-              placeholder="e.g. Need to remove old timber fence, prefer Colorbond® Monument colour, narrow side gate access..."
+              placeholder="e.g. Need to remove old timber fence, narrow side gate access, shared boundary with neighbour..."
               value={data.details}
               onChange={(e) => setData((d) => ({ ...d, details: e.target.value }))}
             />
@@ -480,7 +480,7 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">Got any site photos?</h2>
-            <p className="text-gray-400 text-sm mb-6">Optional — photos help us give you a more accurate quote. Up to 5 images.</p>
+            <p className="text-gray-400 text-sm mb-6">Optional. Photos help us give you a more accurate quote. Up to 5 images.</p>
             <button
               type="button"
               onClick={() => fileRef.current?.click()}
@@ -491,7 +491,7 @@ export default function QuoteForm() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
               <span className="text-sm font-medium">Click to upload photos</span>
-              <span className="text-xs">JPG, PNG or HEIC — max 5 photos, 10MB each</span>
+              <span className="text-xs">JPG, PNG or HEIC, max 5 photos, 10MB each</span>
             </button>
             <input ref={fileRef} type="file" accept="image/*" multiple className="hidden"
               onChange={(e) => {
@@ -531,7 +531,7 @@ export default function QuoteForm() {
             </p>
             <div className="space-y-3">
               {[
-                'Yes — this aligns with my expectations',
+                'Yes, this aligns with my expectations',
                 'I may still be interested but would like to understand options',
                 'This is higher than I was expecting',
               ].map((opt) => (
@@ -557,8 +557,8 @@ export default function QuoteForm() {
 
         return (
           <div>
-            <h2 className="text-2xl font-bold text-brand-dark mb-2">Last step — your contact details</h2>
-            <p className="text-gray-400 text-sm mb-6">We&apos;ll be in touch quickly with your quote.</p>
+            <h2 className="text-2xl font-bold text-brand-dark mb-2">Your contact details</h2>
+            <p className="text-gray-400 text-sm mb-6">So we can get back to you with the right information.</p>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-brand-dark mb-1.5">Full name</label>
@@ -583,7 +583,7 @@ export default function QuoteForm() {
                   className={`w-full rounded-xl border-2 px-4 py-3 text-sm focus:outline-none transition-colors ${
                     phoneErr ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-brand-pink'
                   }`}
-                  placeholder="0412 345 678"
+                  placeholder="04XX XXX XXX"
                   value={data.phone}
                   onChange={(e) => setData((d) => ({ ...d, phone: e.target.value }))}
                   onBlur={() => touch('phone')}
@@ -627,9 +627,9 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">How did you hear about us?</h2>
-            <p className="text-gray-400 text-sm mb-6">Almost done — just one last question.</p>
+            <p className="text-gray-400 text-sm mb-6">Almost done, just one last question.</p>
             <div className="space-y-3">
-              {['Google', 'HiPages', 'Referral', 'Repeat customer', 'Social media'].map((opt) => (
+              {['Google', 'hipages', 'Referral', 'Repeat customer', 'Social media'].map((opt) => (
                 <OptionButton
                   key={opt}
                   label={opt}
@@ -674,7 +674,7 @@ export default function QuoteForm() {
             }}
             className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {submitting ? 'Sending...' : 'Submit Enquiry →'}
+            {submitting ? 'Sending...' : 'Submit'}
           </button>
         ) : (
           // Only show Next button on non-auto-advance steps or multi-select step

@@ -28,7 +28,7 @@ export default function PortfolioPage() {
             <span className="text-brand-pink">proud to show you.</span>
           </h1>
           <p className="text-white/50 text-lg max-w-xl leading-relaxed mt-8">
-            Browse completed fencing and retaining wall projects across Greater Brisbane. Real jobs, real results — nothing staged.
+            Browse completed fencing and retaining wall projects across Greater Brisbane. Real jobs, real results, nothing staged.
           </p>
         </div>
       </section>

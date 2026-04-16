@@ -2,16 +2,15 @@ import Link from 'next/link'
 import Logo from './Logo'
 
 const services = [
+  { label: 'Retaining Walls', href: '/retaining-walls' },
   { label: 'Colorbond Fencing', href: '/colorbond' },
   { label: 'Timber Fencing', href: '/timber' },
-  { label: 'Retaining Walls', href: '/retaining-walls' },
 ]
 
 const company = [
   { label: 'About Us', href: '/about' },
   { label: 'Reviews', href: '/reviews' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Get a Quote', href: '/get-a-quote' },
 ]
 
 export default function Footer() {
@@ -24,12 +23,11 @@ export default function Footer() {
             <Logo variant="white" />
             <p className="mt-5 text-white/40 text-sm leading-relaxed max-w-sm">
               Brisbane&apos;s trusted fencing specialists. Protecting what matters
-              most — your property, your family, your peace of mind.
+              most - your property, your family, your peace of mind.
             </p>
             <div className="mt-6 flex flex-col gap-2 text-sm text-white/40">
-              <span><a href="tel:0412345678" className="hover:text-white transition-colors">Call us for a free quote</a></span>
               <span>Servicing Greater Brisbane, QLD</span>
-              <span>QBCC Licensed · Lic. 15574983</span>
+              <span>QBCC License No 15574983</span>
               <span>$10M Public Liability Insurance</span>
               <span>ABN 12 683 251 489</span>
             </div>

@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import ReviewCard from '@/components/ReviewCard'
-import { reviews } from '@/lib/reviews'
 
 export const metadata: Metadata = {
   title: 'Thank You | Shield Fencing',
@@ -9,12 +7,10 @@ export const metadata: Metadata = {
 }
 
 const steps = [
-  { num: '01', title: 'We review your enquiry', desc: 'We go through every enquiry carefully. If your project is a good fit for what we do, we\'ll reach out to arrange the next step.' },
-  { num: '02', title: 'Site visit', desc: 'If we move forward, we\'ll arrange a time to come out and walk the job with you. This lets us measure up properly and understand exactly what\'s involved.' },
-  { num: '03', title: 'Written quote', desc: 'After the site visit, we prepare a detailed written quote — clear, itemised, and no surprises. Only then can we give you an accurate price.' },
+  { num: '01', title: 'Enquiry review', desc: 'Every enquiry is reviewed carefully to ensure it aligns with the type of work we take on.' },
+  { num: '02', title: 'Site visit', desc: 'If we move forward, we will arrange a time to walk the job with you. This allows us to measure accurately and understand the full scope of work.' },
+  { num: '03', title: 'Written quote', desc: 'After the site visit, we prepare a detailed written quote. Clear, itemised, and based on what is actually required, not assumptions.' },
 ]
-
-const featured = [reviews[0], reviews[3], reviews[7], reviews[12]]
 
 export default function ThankYouPage() {
   return (
@@ -35,7 +31,7 @@ export default function ThankYouPage() {
             <span className="text-brand-pink">getting in touch.</span>
           </h1>
           <p className="text-white/50 text-lg leading-relaxed mt-8 max-w-xl">
-            We&apos;ll review your details. If your project is a good fit, we&apos;ll be in touch to arrange a site visit.
+            We have received your enquiry and will review the details shortly. If your project is a good fit, you will hear from us within the same day to arrange the next step.
           </p>
         </div>
       </section>
@@ -56,27 +52,42 @@ export default function ThankYouPage() {
         </div>
       </section>
 
-      {/* SOCIAL PROOF */}
+      {/* HOW WE WORK */}
       <section className="py-24 section-dark-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
-            <h2 className="section-title text-white">
-              Why homeowners<br />
-              <span className="text-brand-pink">choose us.</span>
-            </h2>
-            <Link href="/reviews" className="text-white/40 hover:text-white text-sm transition-colors underline underline-offset-4 shrink-0">
-              All 25 reviews →
+          <h2 className="section-title text-white mb-8">
+            How we work.
+          </h2>
+          <p className="text-white/50 leading-relaxed max-w-2xl mb-6">
+            We focus on projects where we can deliver a high-quality outcome from start to finish.
+            This approach allows us to stay responsive, maintain standards, and avoid overcommitting.
+          </p>
+          <p className="text-white/50 leading-relaxed max-w-2xl">
+            Morning site visit times (Monday to Thursday) are limited and allocated on a first in, best dressed basis.
+          </p>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="py-24 section-white-panel">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="section-title mb-8">
+            Why homeowners<br />
+            <span className="text-brand-pink">choose us.</span>
+          </h2>
+          <p className="text-gray-500 leading-relaxed max-w-2xl">
+            Professional, reliable, and consistent delivery across fencing and retaining wall projects.
+            Clear communication, structured process, and workmanship that holds up over time.
+          </p>
+          <div className="mt-10">
+            <Link href="/reviews" className="btn-outline">
+              Read Reviews
             </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {featured.map((r) => (
-              <ReviewCard key={r.name} {...r} />
-            ))}
           </div>
         </div>
       </section>
 
-      {/* PRIVACY NOTE + CTA */}
+      {/* EXPLORE + PRIVACY */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -86,16 +97,17 @@ export default function ThankYouPage() {
                 <span className="text-brand-pink">explore our work.</span>
               </h2>
               <p className="text-gray-500 mt-6 mb-10 leading-relaxed">
-                Read our fencing guides or learn more about Shield Fencing while you wait.
+                Read our fencing guides or learn more about Shield Fencing.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/blog" className="btn-primary">Read Blog</Link>
                 <Link href="/about" className="btn-outline">About Us</Link>
+                <Link href="/blog" className="btn-primary">Read Blog</Link>
               </div>
             </div>
             <div className="text-xs text-gray-400 leading-relaxed bg-white rounded-2xl p-8 border border-gray-100">
               <p className="font-semibold text-brand-dark mb-2 text-sm">Your privacy</p>
-              By submitting this enquiry, you consent to Shield Fencing contacting you by phone, SMS, or email to respond to your request, provide quotes, arrange site visits, and follow up regarding your enquiry. Your information will only be used for communication relating to your enquiry and will not be sold or shared with third parties. You may request to stop communications at any time.
+              By submitting this enquiry, you consent to Shield Fencing contacting you by phone, SMS, or email to respond to your request, provide quotes, arrange site visits, and follow up regarding your enquiry. Your information will be handled in accordance with our{' '}
+              <Link href="/privacy" className="text-brand-pink hover:underline">Privacy Policy</Link>.
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
 export const metadata: Metadata = {
   title: 'Reviews & Testimonials | Shield Fencing Brisbane',
   description:
-    'Read what Brisbane homeowners say about Shield Fencing. 4.9-star Google rating across 25 reviews — Colorbond, timber fencing, and retaining walls across Greater Brisbane.',
+    'Read what Brisbane homeowners say about Shield Fencing. 4.9-star Google rating. Colorbond, timber fencing, and retaining walls across Greater Brisbane.',
   alternates: { canonical: 'https://shieldfencing.com.au/reviews' },
 }
 
@@ -29,14 +29,14 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      {/* STATS */}
+      {/* STATS PANEL */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto text-center">
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
             {[
-              { value: '4.9', label: 'Average rating' },
-              { value: '25', label: 'Reviews' },
-              { value: '100+', label: 'Jobs completed' },
+              { value: '4.9 \u2605', label: 'Google Rating' },
+              { value: '5.0 \u2605', label: 'hipages' },
+              { value: '1000m+', label: 'Fencing Installed' },
             ].map((s) => (
               <div key={s.label} className="flex flex-col items-center gap-2">
                 <p className="text-5xl font-bold text-brand-dark">{s.value}</p>
@@ -56,21 +56,7 @@ export default function ReviewsPage() {
             <TestimonialsColumn reviews={reviews.slice(16)} className="hidden lg:block" duration={22} />
           </div>
 
-          {/* Leave a review */}
-          <div className="mt-20 bg-brand-dark rounded-2xl p-10 text-center max-w-xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-3">Had work done with us?</h3>
-            <p className="text-white/50 text-sm mb-8 leading-relaxed">
-              We&apos;d love to hear about your experience. Your feedback helps other Brisbane homeowners make the right choice.
-            </p>
-            <a
-              href="https://g.page/r/review"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Leave a Google Review
-            </a>
-          </div>
+          {/* Removed "Leave a Google review" section */}
         </div>
       </section>
 
@@ -84,10 +70,10 @@ export default function ReviewsPage() {
             </h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-                Get a free quote today. We look after our customers from start to finish.
+                Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.
               </p>
               <Link href="/get-a-quote" className="btn-primary text-base">
-                Get a Free Quote →
+                Enquire Now &rarr;
               </Link>
             </div>
           </div>

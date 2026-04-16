@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import ReviewCard from './ReviewCard'
+import FaqAccordion from './FaqAccordion'
 import { reviews } from '@/lib/reviews'
 
 interface Feature {
@@ -14,7 +15,7 @@ interface ServiceVariant {
 }
 
 interface ServicePageLayoutProps {
-  title: string
+  title: React.ReactNode
   subtitle: string
   heroTagline: string
   intro: string
@@ -48,7 +49,7 @@ export default function ServicePageLayout({
           <p className="text-white/50 text-lg leading-relaxed mt-8 max-w-xl">{subtitle}</p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Link href="/get-a-quote" className="btn-primary w-fit">
-              Get a Free Quote
+              Enquire Now
             </Link>
             <Link href="/reviews" className="btn-secondary w-fit">
               Read Reviews
@@ -143,14 +144,7 @@ export default function ServicePageLayout({
       <section className="py-24 section-white-panel">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title mb-16">Common questions.</h2>
-          <div className="space-y-0 divide-y divide-gray-200">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="py-8">
-                <h3 className="font-bold text-brand-dark mb-3">{faq.q}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion faqs={faqs} />
         </div>
       </section>
 
@@ -184,10 +178,10 @@ export default function ServicePageLayout({
             </h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-                Free, no-obligation. We&apos;ll get back to you fast — usually same day.
+                Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.
               </p>
               <Link href="/get-a-quote" className="btn-primary text-base">
-                Get a Free Quote →
+                Enquire Now &rarr;
               </Link>
             </div>
           </div>

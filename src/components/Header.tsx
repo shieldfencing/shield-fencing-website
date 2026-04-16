@@ -6,12 +6,12 @@ import { usePathname } from 'next/navigation'
 import Logo from './Logo'
 
 const navLinks = [
-  { label: 'Colorbond® Steel', href: '/colorbond' },
-  { label: 'Timber Fencing', href: '/timber' },
   { label: 'Retaining Walls', href: '/retaining-walls' },
+  { label: 'Colorbond® Steel', href: '/colorbond' },
+  { label: 'Timber', href: '/timber' },
   { label: 'Reviews', href: '/reviews' },
-  { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
+  { label: 'About', href: '/about' },
 ]
 
 export default function Header() {
@@ -73,7 +73,7 @@ export default function Header() {
             {/* Desktop CTA */}
             <div className="hidden lg:block">
               <Link href="/get-a-quote" className="btn-primary text-sm py-3 px-6">
-                Get a Free Quote
+                Enquire Now
               </Link>
             </div>
 
@@ -84,7 +84,7 @@ export default function Header() {
                   href="/get-a-quote"
                   className="text-xs font-semibold text-white bg-brand-pink rounded-full px-4 py-2"
                 >
-                  Get a Quote
+                  Enquire Now
                 </Link>
               )}
               <button
@@ -165,7 +165,7 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               className="block w-full text-center py-4 rounded-full bg-brand-pink text-white font-semibold text-sm tracking-wide"
             >
-              Get a Free Quote
+              Enquire Now
             </Link>
             <Link
               href="/reviews"

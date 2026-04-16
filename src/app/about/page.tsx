@@ -11,31 +11,30 @@ export const metadata: Metadata = {
 const values = [
   {
     num: '01',
-    title: 'Integrity',
-    desc: 'We do what we say we\'ll do. No hidden costs, no shortcuts, no excuses. If something\'s not right, we fix it.',
-  },
-  {
-    num: '02',
-    title: 'Communication',
-    desc: 'Clear updates from quote to final inspection. You\'ll always know what\'s happening and when we\'re arriving.',
-  },
-  {
-    num: '03',
-    title: 'Reliability',
+    title: 'Unmatched Reliability',
     desc: 'We show up on time and we finish on schedule. Your time is valuable and we treat it that way.',
   },
   {
+    num: '02',
+    title: 'Ultimate Customer Care',
+    desc: 'Every project is handled with genuine care and attention. We treat your property as if it were our own.',
+  },
+  {
+    num: '03',
+    title: 'Unwavering Integrity',
+    desc: 'We do what we say we will do. No hidden costs, no shortcuts, no excuses. If something is not right, we fix it.',
+  },
+  {
     num: '04',
-    title: 'Quality',
-    desc: 'Every post plumb, every rail level, every clean-up thorough. We\'re proud of our work and it shows.',
+    title: 'Clear Communication',
+    desc: 'Clear updates from quote to final inspection. You will always know what is happening and when we are arriving.',
   },
 ]
 
 const credentials = [
-  { label: 'QBCC Licensed', value: 'Lic. No. 15574983' },
+  { label: 'QBCC Licensed', value: 'License No 15574983' },
   { label: 'ABN', value: '12 683 251 489' },
   { label: 'Insurance', value: '$10M Public Liability' },
-  { label: 'Engineering', value: 'Engineers Australia NER' },
   { label: 'Service Area', value: 'Greater Brisbane, QLD' },
 ]
 
@@ -69,29 +68,32 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-5 text-gray-600 leading-relaxed">
                 <p>
-                  Shield Fencing was built with one goal in mind: to be the fencing company
-                  Brisbane actually deserves. We saw too many homeowners getting let down
-                  by tradespeople who didn&apos;t show up, didn&apos;t communicate, or left the job
-                  looking sloppy.
+                  For too long, property owners have dealt with fences that do not last,
+                  quotes that drag on, and contractors who simply do not show up.
                 </p>
                 <p>
-                  So we built something different. A company where the quote is honest,
-                  the crew shows up on time, the work is done properly, and the site is
-                  cleaned up at the end of every day. Where you get a call back. Where the
-                  finish is something you&apos;d be proud to show your neighbours.
+                  We deliver secure, high quality fences with reliability, clear
+                  communication and a customer first approach that respects your time
+                  and your property.
                 </p>
                 <p>
-                  We cover all of Greater Brisbane — from the northern suburbs to Logan,
-                  from Ipswich to Redland Bay. Colorbond®, timber, retaining walls — if
+                  We are not here to sell you something you do not need. We are here to
+                  protect what matters most, with quality work, honest advice and a
+                  process that makes sense.
+                </p>
+                <p>
+                  We cover all of Greater Brisbane, from the northern suburbs to Logan,
+                  from Ipswich to Redland Bay. Colorbond®, timber, retaining walls: if
                   it defines a boundary, we build it.
                 </p>
                 <p className="font-semibold text-brand-dark">
-                  Protecting what matters most. That&apos;s our promise.
+                  To build fences that protect what matters most, giving every client
+                  peace of mind and a service they can trust.
                 </p>
               </div>
               <div className="mt-10 flex gap-4">
                 <Link href="/get-a-quote" className="btn-primary">
-                  Get a Free Quote
+                  Enquire Now
                 </Link>
                 <Link href="/reviews" className="btn-outline">
                   See Reviews
@@ -112,12 +114,11 @@ export default function AboutPage() {
               </div>
               <div className="mt-6 bg-brand-pink/5 border border-brand-pink/10 rounded-xl p-5">
                 <p className="text-sm text-brand-dark font-semibold mb-1">
-                  Civil engineering backed
+                  Chartered Civil Engineer (CPEng)
                 </p>
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  Listed on the National Engineering Register (Engineers Australia NER) —
-                  giving you confidence that every retaining wall and structural job is
-                  properly designed.
+                  We are backed by a Chartered Civil Engineer (CPEng), bringing a
+                  disciplined, detail-focused approach to every project.
                 </p>
               </div>
             </div>
@@ -151,10 +152,10 @@ export default function AboutPage() {
             </h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-                Get a free, no-obligation quote. We&apos;ll be in touch quickly — usually same day.
+                Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.
               </p>
               <Link href="/get-a-quote" className="btn-primary text-base">
-                Get a Free Quote →
+                Enquire Now &rarr;
               </Link>
             </div>
           </div>

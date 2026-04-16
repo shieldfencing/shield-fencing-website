@@ -17,8 +17,10 @@ function hasFile(name: string) {
 export default function ContactPage() {
   const hasQbcc = hasFile('qbcc.png') || hasFile('qbcc.svg')
   const hasEA = hasFile('engineers-australia.png') || hasFile('engineers-australia.svg')
+  const hasABN = hasFile('abn.png') || hasFile('abn.svg')
   const qbccSrc = hasFile('qbcc.svg') ? '/logos/credentials/qbcc.svg' : '/logos/credentials/qbcc.png'
   const eaSrc = hasFile('engineers-australia.svg') ? '/logos/credentials/engineers-australia.svg' : '/logos/credentials/engineers-australia.png'
+  const abnSrc = hasFile('abn.svg') ? '/logos/credentials/abn.svg' : '/logos/credentials/abn.png'
 
   return (
     <>
@@ -31,11 +33,11 @@ export default function ContactPage() {
             <span className="text-brand-pink">with us.</span>
           </h1>
           <p className="text-white/40 text-base mt-6 max-w-md leading-relaxed">
-            For quotes and project enquiries, please use our online form — it&apos;s the fastest way to get a response.
+            For most enquiries, the online form is the fastest way to get a clear response. If you would prefer to speak directly, our details are below.
           </p>
           <div className="mt-8">
             <Link href="/get-a-quote" className="btn-primary">
-              Request a Free Quote
+              Enquire Now
             </Link>
           </div>
         </div>
@@ -46,18 +48,15 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
-            {/* Left — details */}
+            {/* Left - details */}
             <div>
-              <h2 className="section-title mb-10">Our details.</h2>
+              <h2 className="section-title mb-10">Prefer to speak directly?</h2>
               <dl className="space-y-8">
                 <div>
-                  <dt className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Address</dt>
-                  <dd className="text-brand-dark font-medium">Brisbane, Queensland, Australia</dd>
-                </div>
-                <div>
                   <dt className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Phone</dt>
-                  <dd className="text-brand-dark font-medium">0412 345 678</dd>
-                  <dd className="text-gray-400 text-xs mt-1">For enquiries, our online form gets the fastest response.</dd>
+                  <dd className="text-brand-dark font-medium">
+                    <a href="tel:0411496474" className="hover:text-brand-pink transition-colors">0411 496 474</a>
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Email</dt>
@@ -68,14 +67,10 @@ export default function ContactPage() {
                   <dt className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">Service Area</dt>
                   <dd className="text-brand-dark font-medium">Greater Brisbane, QLD</dd>
                 </div>
-                <div>
-                  <dt className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">ABN</dt>
-                  <dd className="text-brand-dark font-medium">12 683 251 489</dd>
-                </div>
               </dl>
             </div>
 
-            {/* Right — credentials */}
+            {/* Right - credentials */}
             <div>
               <h2 className="section-title mb-10">Credentials.</h2>
               <div className="space-y-4">
@@ -91,8 +86,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-bold text-brand-dark">QBCC Licensed</p>
-                    <p className="text-gray-500 text-sm mt-0.5">Queensland Building and Construction Commission</p>
-                    <p className="text-brand-pink text-xs font-mono mt-1.5">Lic. 15574983</p>
+                    <p className="text-gray-500 text-sm mt-0.5">License No 15574983</p>
+                    <p className="text-gray-400 text-xs mt-1">Structural Landscaping (Trade) &middot; Carpentry</p>
                   </div>
                 </div>
 
@@ -102,12 +97,27 @@ export default function ContactPage() {
                     {hasEA ? (
                       <CredentialLogo src={eaSrc} alt="Engineers Australia" />
                     ) : (
-                      <span className="text-xs font-bold text-gray-400 text-center leading-tight px-1">Engineers Australia</span>
+                      <span className="text-xs font-bold text-gray-400 text-center leading-tight px-1">EA</span>
                     )}
                   </div>
                   <div>
                     <p className="font-bold text-brand-dark">Engineers Australia</p>
-                    <p className="text-gray-500 text-sm mt-0.5">Civil engineering backed design and installation</p>
+                    <p className="text-gray-500 text-sm mt-0.5">Backed by a Chartered Civil Engineer</p>
+                  </div>
+                </div>
+
+                {/* ABN */}
+                <div className="flex items-center gap-6 p-6 bg-brand-cream rounded-2xl">
+                  <div className="w-20 h-20 shrink-0 flex items-center justify-center bg-white rounded-xl border border-gray-100 overflow-hidden">
+                    {hasABN ? (
+                      <CredentialLogo src={abnSrc} alt="Australian Business Number" />
+                    ) : (
+                      <span className="text-xs font-bold text-gray-400 text-center leading-tight px-1">ABN</span>
+                    )}
+                  </div>
+                  <div>
+                    <p className="font-bold text-brand-dark">ABN</p>
+                    <p className="text-gray-500 text-sm mt-0.5">12 683 251 489</p>
                   </div>
                 </div>
 
@@ -139,10 +149,10 @@ export default function ContactPage() {
               Submit an enquiry online.
             </h2>
             <p className="text-white/40 max-w-md mx-auto text-sm leading-relaxed mb-8">
-              Fill in our short form and we&apos;ll review your project. If it&apos;s a good fit, we&apos;ll be in touch to arrange a site visit.
+              Fill in our short form and we will review your project. If it is a good fit, we will be in touch to arrange a site visit.
             </p>
             <Link href="/get-a-quote" className="btn-primary">
-              Get a Free Quote →
+              Enquire Now &rarr;
             </Link>
           </div>
         </div>

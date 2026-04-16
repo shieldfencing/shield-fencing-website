@@ -11,6 +11,7 @@ interface ReviewCardProps {
   rating?: number
   text: string
   service?: string
+  source?: string
 }
 
 export default function ReviewCard({
@@ -20,6 +21,7 @@ export default function ReviewCard({
   rating = 5,
   text,
   service,
+  source,
 }: ReviewCardProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const isLong = text.length > TRUNCATE_AT
@@ -58,8 +60,17 @@ export default function ReviewCard({
           )}
         </div>
         <div className="mt-4 pt-4 border-t border-gray-100 shrink-0">
-          <p className="font-semibold text-sm text-brand-dark">{name}</p>
-          <p className="text-xs text-gray-400 mt-0.5">{service ?? suburb ?? date}</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-semibold text-sm text-brand-dark">{name}{suburb ? `, ${suburb}` : ''}</p>
+              <p className="text-xs text-gray-400 mt-0.5">{service}</p>
+            </div>
+            {source && (
+              <span className="text-[10px] text-gray-400 font-medium shrink-0">
+                {source === 'Google Reviews' ? 'Google' : 'hipages'}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
@@ -83,8 +94,17 @@ export default function ReviewCard({
             </div>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">{text}</p>
             <div className="pt-4 border-t border-gray-100">
-              <p className="font-semibold text-sm text-brand-dark">{name}</p>
-              <p className="text-xs text-gray-400 mt-0.5">{service ?? suburb ?? date}</p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-semibold text-sm text-brand-dark">{name}{suburb ? `, ${suburb}` : ''}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">{service}</p>
+                </div>
+                {source && (
+                  <span className="text-[10px] text-gray-400 font-medium shrink-0">
+                    {source === 'Google Reviews' ? 'Google' : 'hipages'}
+                  </span>
+                )}
+              </div>
             </div>
             <button
               onClick={() => setModalOpen(false)}

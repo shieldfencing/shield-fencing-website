@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import ReviewCard from '@/components/ReviewCard'
+import BrisbaneServiceMap from '@/components/BrisbaneServiceMap'
 import { reviews } from '@/lib/reviews'
 
 export const metadata: Metadata = {
@@ -11,11 +12,10 @@ export const metadata: Metadata = {
 }
 
 const credentials = [
-  'QBCC Licensed · 15574983',
-  '$10M Public Liability',
-  'Engineers Australia NER',
-  '4.9 ★ Google Rating',
-  'Free Quotes',
+  '4.9 \u2605 Google Rating',
+  'QBCC License No 15574983',
+  'Backed by a Chartered Civil Engineer',
+  '$10 million Public Liability Insurance',
   'ABN 12 683 251 489',
 ]
 
@@ -30,13 +30,14 @@ export default function Home() {
             Serving Greater Brisbane
           </div>
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[108px] font-bold text-white leading-[0.95] tracking-tight max-w-5xl">
-            Protecting<br />
-            <span className="text-brand-pink">What Matters</span><br />
-            Most.
+            Shaping QLD<br />
+            Boundaries,<br />
+            <span className="text-brand-pink">One Fence</span><br />
+            at a Time.
           </h1>
           <div className="mt-12 flex flex-col sm:flex-row gap-4">
             <Link href="/get-a-quote" className="btn-primary text-base w-fit">
-              Get a Free Quote
+              Enquire Now
             </Link>
             <Link href="/reviews" className="btn-secondary text-base w-fit">
               Read Reviews
@@ -65,27 +66,27 @@ export default function Home() {
               What we build.
             </h2>
             <p className="text-gray-500 text-lg leading-relaxed lg:text-right">
-              Quality fencing and retaining wall solutions for residential and commercial properties across Greater Brisbane.
+              Quality fencing and retaining wall solutions for residential properties across Greater Brisbane.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200">
             {[
               {
+                title: 'Retaining Walls',
+                desc: 'Timber and concrete retaining walls up to 1m. Built with care for lasting structural integrity.',
+                href: '/retaining-walls',
+                num: '01',
+              },
+              {
                 title: 'Colorbond® Steel',
                 desc: 'Durable, low-maintenance steel fencing in 22 COLORBOND® colours. The most popular choice for Brisbane homes.',
                 href: '/colorbond',
-                num: '01',
+                num: '02',
               },
               {
                 title: 'Timber Fencing',
                 desc: 'Classic hardwood and treated pine fencing. Natural beauty with the privacy your property deserves.',
                 href: '/timber',
-                num: '02',
-              },
-              {
-                title: 'Retaining Walls',
-                desc: 'Timber and concrete retaining walls up to 1m. Civil engineering backed for lasting structural integrity.',
-                href: '/retaining-walls',
                 num: '03',
               },
             ].map((s) => (
@@ -118,17 +119,17 @@ export default function Home() {
             What our clients say
           </p>
           <blockquote className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-            &ldquo;Professional, reliable and outstanding service&hellip; this willingness to go above and beyond really highlights their commitment to customer satisfaction.&rdquo;
+            &ldquo;Professional, reliable and outstanding service... this willingness to go above and beyond really highlights their commitment to customer satisfaction.&rdquo;
           </blockquote>
           <div className="mt-10 flex items-center justify-center gap-4">
             <div className="text-left">
-              <p className="text-white font-semibold text-sm">MetzMagicGames</p>
-              <p className="text-white/40 text-xs">Retaining Wall & Colorbond</p>
+              <p className="text-white font-semibold text-sm">Karin, Riverhills</p>
+              <p className="text-white/40 text-xs">Retaining Wall & Colorbond Fencing</p>
             </div>
           </div>
           <div className="mt-16">
             <Link href="/reviews" className="text-white/50 text-sm hover:text-white transition-colors underline underline-offset-4">
-              Read all 25 reviews →
+              Read all reviews &rarr;
             </Link>
           </div>
         </div>
@@ -144,7 +145,7 @@ export default function Home() {
                 <span className="text-brand-pink">Delivered with care.</span>
               </h2>
               <p className="mt-6 text-gray-500 leading-relaxed max-w-md">
-                We started Shield Fencing with one goal: to be the kind of fencing company we&apos;d want to hire ourselves. Turn up on time, communicate clearly, and do the job right — every time.
+                We envision a future where everyone enjoys high-quality fencing that protects what matters most. Too many people settle for fences that don&apos;t last, and contractors who don&apos;t show up. We build fences the right way, with quality and care. Every job. Every time.
               </p>
               <Link href="/about" className="btn-primary mt-10 inline-flex">
                 About Shield Fencing
@@ -152,9 +153,9 @@ export default function Home() {
             </div>
             <div className="space-y-0 divide-y divide-gray-200">
               {[
-                { title: 'Reliable & On Time', desc: 'We show up when we say we will. Clear communication from quote to completion — no surprises.' },
-                { title: 'Engineered for Longevity', desc: 'Civil engineering backing through Engineers Australia NER. Every job built to outlast the rest.' },
-                { title: 'Fully Licensed & Insured', desc: 'QBCC Licensed (15574983) with $10M public liability. You\'re completely protected.' },
+                { title: 'Reliable and On Time', desc: 'We show up when we say we will. Clear communication from quote to completion, no surprises.' },
+                { title: 'Backed by a Chartered Civil Engineer', desc: 'CPEng-qualified leadership bringing a disciplined, detail-focused approach to every project.' },
+                { title: 'Fully Licensed and Insured', desc: 'QBCC License No 15574983 with $10M public liability. You are completely protected.' },
                 { title: 'Great Value', desc: 'Competitive pricing with no corners cut. Quality workmanship at a fair price, every time.' },
               ].map((item) => (
                 <div key={item.title} className="py-6 flex gap-6">
@@ -175,12 +176,13 @@ export default function Home() {
       {/* STATS */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
             {[
-              { value: '4.9★', label: 'Google Rating' },
-              { value: '100+', label: 'Jobs completed' },
-              { value: '$10M', label: 'Public liability cover' },
-              { value: 'QBCC', label: 'Licensed & compliant' },
+              { value: '4.9 \u2605', label: 'Google Rating' },
+              { value: 'QBCC', label: 'License No 15574983' },
+              { value: '1000m+', label: 'Fencing Installed' },
+              { value: '$10M', label: 'Public Liability Insurance' },
+              { value: 'CPEng', label: 'Chartered Civil Engineer' },
             ].map((s) => (
               <div key={s.label}>
                 <p className="text-4xl md:text-5xl font-bold text-brand-dark">{s.value}</p>
@@ -220,26 +222,10 @@ export default function Home() {
                 <span className="text-brand-pink">to you.</span>
               </h2>
               <p className="mt-6 text-white/50 leading-relaxed">
-                Based in Brisbane, servicing all of Greater Brisbane — north, south, east, west, and everything in between.
+                Based in Brisbane, servicing all of Greater Brisbane - north, south, east, west, and everything in between.*
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-px bg-white/10">
-              {[
-                { title: 'North Brisbane', suburbs: 'Chermside · North Lakes · Kallangur · Caboolture · Strathpine' },
-                { title: 'Inner West', suburbs: 'Toowong · Indooroopilly · St Lucia · Kenmore · Chapel Hill' },
-                { title: 'South Brisbane', suburbs: 'Sunnybank · Moorooka · Rocklea · Acacia Ridge · Salisbury' },
-                { title: 'Logan', suburbs: 'Logan Central · Springwood · Loganholme · Beenleigh · Shailer Park' },
-                { title: 'Ipswich', suburbs: 'Ipswich City · Springfield · Redbank · Goodna · Brassall' },
-                { title: 'Redlands', suburbs: 'Redland Bay · Victoria Point · Cleveland · Capalaba · Thornlands' },
-                { title: 'South East', suburbs: 'Carindale · Rochedale · Eight Mile Plains · Mansfield · Mount Gravatt' },
-                { title: 'Moreton Bay', suburbs: 'Redcliffe · Deception Bay · Morayfield · Burpengary · Griffin' },
-              ].map((area) => (
-                <div key={area.title} className="bg-brand-dark p-6">
-                  <h4 className="text-white font-semibold text-sm mb-2">{area.title}</h4>
-                  <p className="text-white/30 text-xs leading-relaxed">{area.suburbs}</p>
-                </div>
-              ))}
-            </div>
+            <BrisbaneServiceMap />
           </div>
           <p className="mt-8 text-white/25 text-xs leading-relaxed">
             * A call-out fee may apply for locations outside our core service area. We&apos;ll let you know upfront if this applies to your job.
@@ -257,10 +243,10 @@ export default function Home() {
             </h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-                Get a free, no-obligation quote in minutes. We&apos;ll get back to you fast — usually same day.
+                Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.
               </p>
               <Link href="/get-a-quote" className="btn-primary text-base">
-                Get a Free Quote →
+                Enquire Now &rarr;
               </Link>
             </div>
           </div>
