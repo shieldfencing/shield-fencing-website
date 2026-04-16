@@ -1,6 +1,6 @@
 ---
 title: "Colorbond Fencing: What to Expect and Is It Right for You?"
-date: "2024-12-05"
+date: "2025-02-06"
 excerpt: "Colorbond is one of the most popular fencing choices in Brisbane. Here is what you should know before deciding if it suits your property."
 category: "Colorbond Fencing"
 readTime: "3 min read"

@@ -1,6 +1,6 @@
 ---
 title: "5 Common Fencing Mistakes Brisbane Homeowners Make"
-date: "2024-11-20"
+date: "2025-01-04"
 excerpt: "Avoiding these five common fencing mistakes can save Brisbane homeowners time, money, and frustration down the track."
 category: "Fencing Tips"
 readTime: "3 min read"
