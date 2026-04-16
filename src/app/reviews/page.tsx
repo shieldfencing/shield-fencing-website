@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import ReviewCard from '@/components/ReviewCard'
 import { reviews } from '@/lib/reviews'
+import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
 
 export const metadata: Metadata = {
   title: 'Reviews & Testimonials | Shield Fencing Brisbane',
@@ -50,10 +50,10 @@ export default function ReviewsPage() {
       {/* ALL REVIEWS */}
       <section className="py-24 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {reviews.map((r) => (
-              <ReviewCard key={r.name} {...r} />
-            ))}
+          <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[740px] overflow-hidden">
+            <TestimonialsColumn reviews={reviews.slice(0, 8)} duration={28} />
+            <TestimonialsColumn reviews={reviews.slice(8, 16)} className="hidden md:block" duration={34} />
+            <TestimonialsColumn reviews={reviews.slice(16)} className="hidden lg:block" duration={22} />
           </div>
         </div>
       </section>
