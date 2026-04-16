@@ -47,4 +47,3 @@ Most boundary fence situations in Brisbane are straightforward. Have a conversat
 
 If you need help understanding what a sufficient fence looks like for your property, or if you need a quote that you can share with your neighbour, we are happy to help.
 
-[Get a free quote](/get-a-quote)

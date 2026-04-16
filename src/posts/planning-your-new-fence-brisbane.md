@@ -51,4 +51,3 @@ Talk to your fencer about gravel boards, reduced gaps, or plinth panels at the b
 
 A few hours of thought before the build starts will save weeks of frustration later. If you are planning a new fence in Brisbane and want to make sure the details are covered, we are happy to walk the site with you and talk through the options.
 
-[Get a free quote](/get-a-quote)

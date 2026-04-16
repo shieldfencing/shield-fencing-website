@@ -4,7 +4,7 @@ date: "2025-03-15"
 excerpt: "Two great fencing materials, two very different experiences. Here's what you should actually think about before choosing between Colorbond® and timber in Brisbane."
 category: "Colorbond Fencing"
 readTime: "6 min read"
-author: "Shield Fencing"
+author: "Sid"
 ---
 
 Walk down any street in Brisbane and you'll see both. Colorbond® panels catching the afternoon sun. Timber paling fences half-hidden behind overgrown jacarandas. Both do the job. Both look the part on the right property.
@@ -69,4 +69,3 @@ If you'll genuinely stay on top of it, timber is a beautiful choice and will rew
 
 When we quote jobs for customers who aren't sure, we'll tell you what we'd choose for your specific property — not just what's easier to install.
 
-[Get a free quote →](/get-a-quote)

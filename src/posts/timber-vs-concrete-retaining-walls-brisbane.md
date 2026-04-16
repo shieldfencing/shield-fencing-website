@@ -1,10 +1,10 @@
 ---
 title: "Timber vs Concrete Retaining Walls: How to Choose for Your Brisbane Property"
-date: "2025-03-18"
+date: "2025-01-22"
 excerpt: "Timber sleepers or concrete sleepers? Here's how they differ, how they're built, and how to decide which is right for your block."
-category: "Guides"
+category: "Retaining Walls"
 readTime: "5 min read"
-author: "Shield Fencing"
+author: "Hanad"
 ---
 
 ## Two materials. Very different walls.
@@ -73,4 +73,3 @@ The best way to make that call is to have someone look at your specific site. So
 
 We'll walk you through both options on the site visit and tell you what we'd build if it were our property.
 
-[Get a free quote →](/get-a-quote)

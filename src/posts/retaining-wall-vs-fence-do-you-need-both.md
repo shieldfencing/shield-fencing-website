@@ -49,4 +49,3 @@ If your block is flat, you probably just need a fence. If there is a slope or le
 
 We build both retaining walls and fences across Brisbane, so if you are not sure what your property needs, we are happy to take a look and give you a clear recommendation.
 
-[Get a free quote](/get-a-quote)

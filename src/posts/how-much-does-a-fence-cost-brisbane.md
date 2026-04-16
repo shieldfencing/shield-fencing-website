@@ -4,7 +4,7 @@ date: "2025-02-20"
 excerpt: "Before you get any quotes, here's what Brisbane homeowners should understand about fencing — materials, installation quality, boundaries, and what to watch out for."
 category: "Guides"
 readTime: "7 min read"
-author: "Shield Fencing"
+author: "Yash"
 ---
 
 Most people start the fencing process backwards. They jump straight to getting quotes before they've thought through the key questions — and then they end up confused about why three quotes are wildly different numbers for what seems like the same job.
@@ -80,5 +80,3 @@ You don't need to be precise — we'll measure properly on a site visit. But hav
 - **What the neighbouring property looks like** — affects the shared fence conversation
 
 The only way to get an accurate quote is a site visit. Photos and Google Maps give us a starting point, but site conditions — soil type, existing structures, access, drainage — all affect how a job gets priced and planned.
-
-[Request a site visit →](/get-a-quote)

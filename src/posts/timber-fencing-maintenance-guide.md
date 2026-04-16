@@ -51,4 +51,3 @@ A little attention each season goes a long way toward getting the full life out 
 
 If your timber fence is past the point of simple maintenance, or if you are thinking about a new one, we are happy to take a look and give you an honest assessment.
 
-[Get a free quote](/get-a-quote)

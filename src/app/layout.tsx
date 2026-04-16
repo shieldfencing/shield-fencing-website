@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s | Shield Fencing Brisbane',
   },
   description:
-    'Brisbane\'s trusted fencing specialists. Colorbond, timber, and retaining wall solutions across Greater Brisbane. QBCC Licensed. Free quotes.',
+    'Brisbane\'s trusted fencing specialists. Colorbond, timber, and retaining wall solutions across Greater Brisbane. QBCC Licensed.',
   keywords: [
     'fencing Brisbane',
     'Colorbond fencing Brisbane',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: 'Shield Fencing',
     title: 'Shield Fencing | Brisbane Fencing & Retaining Wall Specialists',
     description:
-      'Brisbane\'s trusted fencing specialists. Colorbond, timber, and retaining wall solutions across Greater Brisbane. QBCC Licensed. Free quotes.',
+      'Brisbane\'s trusted fencing specialists. Colorbond, timber, and retaining wall solutions across Greater Brisbane. QBCC Licensed.',
   },
   twitter: {
     card: 'summary_large_image',

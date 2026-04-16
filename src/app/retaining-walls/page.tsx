@@ -4,7 +4,7 @@ import ServicePageLayout from '@/components/ServicePageLayout'
 export const metadata: Metadata = {
   title: 'Retaining Walls Brisbane | Timber & Concrete | Shield Fencing',
   description:
-    'Retaining wall specialists across Greater Brisbane. Treated pine, hardwood, and concrete walls up to 1m. Civil engineering backed. QBCC Licensed. Free quotes.',
+    'Retaining wall specialists across Greater Brisbane. Treated pine, hardwood, and concrete walls up to 1m. Civil engineering backed. QBCC Licensed.',
   alternates: { canonical: 'https://shieldfencing.com.au/retaining-walls' },
 }
 

@@ -3,7 +3,7 @@ const badges = [
   { icon: '⭐', label: '5-Star Rated', sub: 'Google Reviews' },
   { icon: '🛡️', label: '$10M Insured', sub: 'Fully covered' },
   { icon: '🏗️', label: 'Civil Eng. Backed', sub: 'Engineers Australia NER' },
-  { icon: '📋', label: 'Free Quotes', sub: 'Fast response' },
+  { icon: '📋', label: 'Fast Response', sub: 'Quick turnaround' },
 ]
 
 interface TrustBarProps {

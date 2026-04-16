@@ -7,7 +7,7 @@ import { reviews } from '@/lib/reviews'
 export const metadata: Metadata = {
   title: 'Shield Fencing | Brisbane Fencing & Retaining Wall Specialists',
   description:
-    'Colorbond, timber fencing and retaining wall specialists across Greater Brisbane. QBCC Licensed. Free quotes. Protecting what matters most.',
+    'Colorbond, timber fencing and retaining wall specialists across Greater Brisbane. QBCC Licensed. Protecting what matters most.',
   alternates: { canonical: 'https://shieldfencing.com.au' },
 }
 

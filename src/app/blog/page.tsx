@@ -85,10 +85,10 @@ export default function BlogPage() {
             </h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-                We service all of Greater Brisbane. Free, no-obligation quotes.
+                We service all of Greater Brisbane.
               </p>
               <Link href="/get-a-quote" className="btn-primary text-base">
-                Get a Free Quote →
+                Enquire Now →
               </Link>
             </div>
           </div>

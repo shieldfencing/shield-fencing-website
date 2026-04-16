@@ -83,10 +83,10 @@ export default async function BlogPostPage({ params }: PageProps) {
               Ready to get started?
             </h3>
             <p className="text-white/50 mb-8">
-              Free quote, fast response. We service all of Greater Brisbane.
+              Fast response. We service all of Greater Brisbane.
             </p>
             <Link href="/get-a-quote" className="btn-primary">
-              Get a Free Quote →
+              Enquire Now →
             </Link>
           </div>
         </div>

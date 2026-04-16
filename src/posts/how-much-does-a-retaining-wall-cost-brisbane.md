@@ -4,7 +4,7 @@ date: "2025-03-10"
 excerpt: "Sloped block, crumbling garden edge, or a neighbour's yard draining into yours — when do you actually need a retaining wall, and what does the process look like?"
 category: "Guides"
 readTime: "6 min read"
-author: "Shield Fencing"
+author: "Kalid"
 ---
 
 Brisbane is a hilly city. Level blocks are the exception. And when you've got a slope on your property — at the boundary, behind a garden bed, or between your yard and your neighbour's — eventually that slope has to be managed.
@@ -81,4 +81,3 @@ The only way to get an accurate picture of what your job involves is a site visi
 
 We come out, look at the site, talk through the options, and follow up with a detailed written quote. No pressure, no obligation.
 
-[Get a free quote →](/get-a-quote)

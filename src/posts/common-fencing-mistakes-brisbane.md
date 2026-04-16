@@ -43,4 +43,3 @@ The material you choose should match the maintenance you are realistically willi
 
 Most of these mistakes come down to planning. A proper site assessment, the right materials, and correct installation make the difference between a fence that lasts and one that causes headaches. If you are planning a new fence in Brisbane, we are happy to walk through the details with you.
 
-[Get a free quote](/get-a-quote)

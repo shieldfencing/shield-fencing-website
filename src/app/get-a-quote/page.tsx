@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import QuoteForm from '@/components/QuoteForm'
 
 export const metadata: Metadata = {
-  title: 'Get a Free Quote | Shield Fencing Brisbane',
+  title: 'Enquire Now | Shield Fencing Brisbane',
   description:
-    'Get a free, no-obligation fencing or retaining wall quote from Shield Fencing. Serving Greater Brisbane. Quick response guaranteed.',
+    'Submit an enquiry for fencing or retaining wall work from Shield Fencing. Serving Greater Brisbane. Quick response guaranteed.',
   alternates: { canonical: 'https://shieldfencing.com.au/get-a-quote' },
   robots: { index: false },
 }
@@ -15,7 +15,7 @@ export default function GetAQuotePage() {
       <div className="section-dark-hero pt-32 pb-16">
         <div className="max-w-lg mx-auto px-4 sm:px-6 text-center">
           <p className="text-brand-pink text-sm font-semibold uppercase tracking-widest mb-4">
-            Free Quote
+            Enquire Now
           </p>
           <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
             Tell us about<br />your project.

@@ -4,7 +4,7 @@ import ServicePageLayout from '@/components/ServicePageLayout'
 export const metadata: Metadata = {
   title: 'Timber Fencing Brisbane | Hardwood & Treated Pine | Shield Fencing',
   description:
-    'Timber fencing specialists across Greater Brisbane. Hardwood and treated pine options for privacy, character, and natural beauty. QBCC Licensed. Free quotes.',
+    'Timber fencing specialists across Greater Brisbane. Hardwood and treated pine options for privacy, character, and natural beauty. QBCC Licensed.',
   alternates: { canonical: 'https://shieldfencing.com.au/timber' },
 }
 
@@ -60,8 +60,8 @@ export default function TimberPage() {
       ]}
       faqs={[
         {
-          q: 'Do you offer free quotes for timber fencing?',
-          a: 'Yes. We provide free quotes for suitable projects based on scope and availability. All enquiries are reviewed before a quote or site visit is arranged.',
+          q: 'How do I get a quote for timber fencing?',
+          a: 'Submit an enquiry through our website. All enquiries are reviewed before a quote or site visit is arranged.',
         },
         {
           q: 'How much does timber fencing cost?',

@@ -7,7 +7,7 @@ import { reviews } from '@/lib/reviews'
 export const metadata: Metadata = {
   title: 'Colorbond® Steel Fencing Brisbane | Shield Fencing',
   description:
-    'Expert Colorbond® steel fencing installation across Greater Brisbane. Durable, low-maintenance, available in 22 colours. QBCC Licensed. Free quotes.',
+    'Expert Colorbond® steel fencing installation across Greater Brisbane. Durable, low-maintenance, available in 22 colours. QBCC Licensed.',
   alternates: { canonical: 'https://shieldfencing.com.au/colorbond' },
 }
 
@@ -48,7 +48,7 @@ const colours = [
 ]
 
 const faqs = [
-  { q: 'Do you offer free quotes?', a: 'Yes. We provide free quotes for suitable projects based on scope and availability. Each enquiry is reviewed to ensure the right approach is taken before a quote or site visit is arranged.' },
+  { q: 'How do I get a quote?', a: 'Submit an enquiry through our website. Each enquiry is reviewed to ensure the right approach is taken before a quote or site visit is arranged.' },
   { q: 'How much does Colorbond® fencing cost?', a: 'Pricing varies depending on fence length and height, ground conditions and access, and site-specific requirements. We provide tailored pricing once your project has been properly assessed.' },
   { q: 'Do you reuse existing panels or materials?', a: 'No. We install new materials to ensure consistency, durability, and finish quality across the entire fence. Reusing existing panels often leads to mismatched appearance and reduced lifespan.' },
   { q: 'Do you handle full fence replacements?', a: 'Yes. We regularly remove and replace existing fences as part of a complete installation. This ensures a clean, consistent result across the full boundary.' },
