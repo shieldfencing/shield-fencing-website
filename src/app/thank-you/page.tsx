@@ -91,7 +91,7 @@ export default function ThankYouPage() {
               <span className="text-brand-pink">have a read.</span>
             </h2>
             <p className="text-gray-400 text-sm mb-12 max-w-lg">
-              Honest advice, pricing guides, and tips from Brisbane&apos;s fencing specialists.
+              Honest advice, helpful guides, and tips from Brisbane&apos;s fencing specialists.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200">
               {posts.map((post) => (

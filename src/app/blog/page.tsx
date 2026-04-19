@@ -5,7 +5,7 @@ import { getAllPosts } from '@/lib/posts'
 export const metadata: Metadata = {
   title: 'Blog | Fencing Tips & Guides for Brisbane Homeowners | Shield Fencing',
   description:
-    'Expert fencing guides, pricing information, and tips for Brisbane homeowners. Colorbond, timber, retaining walls, and more from Shield Fencing.',
+    'Expert fencing guides and tips for Brisbane homeowners. Colorbond, timber, retaining walls, and more from Shield Fencing.',
   alternates: { canonical: 'https://shieldfencing.com.au/blog' },
 }
 
@@ -25,7 +25,7 @@ export default function BlogPage() {
             <span className="text-brand-pink">to know.</span>
           </h1>
           <p className="text-white/50 text-lg leading-relaxed mt-8 max-w-xl">
-            Honest advice, pricing guides, and tips from Brisbane&apos;s fencing specialists.
+            Honest advice, helpful guides, and tips from Brisbane&apos;s fencing specialists.
           </p>
         </div>
       </section>
