@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
+import BlogList from '@/components/BlogList'
 
 export const metadata: Metadata = {
   title: 'Blog | Fencing Tips & Guides for Brisbane Homeowners | Shield Fencing',
@@ -33,45 +34,7 @@ export default function BlogPage() {
       {/* POSTS */}
       <section className="py-24 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {posts.length === 0 ? (
-            <div className="text-center py-20 text-gray-400">
-              <p className="text-lg">Articles coming soon.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
-              {posts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group bg-brand-cream hover:bg-white transition-colors duration-300 p-10 flex flex-col gap-6"
-                >
-                  <div className="flex items-center gap-3 text-xs text-gray-400">
-                    <span className="text-brand-pink font-semibold uppercase tracking-wider">
-                      {post.category}
-                    </span>
-                    <span>·</span>
-                    <span>{post.readTime}</span>
-                    <span className="ml-auto">{post.date}</span>
-                  </div>
-
-                  <h2 className="text-xl font-bold text-brand-dark group-hover:text-brand-pink transition-colors leading-snug flex-1">
-                    {post.title}
-                  </h2>
-
-                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-
-                  <span className="text-brand-dark text-sm font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Read article
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </Link>
-              ))}
-            </div>
-          )}
+          <BlogList posts={posts} />
         </div>
       </section>
 
