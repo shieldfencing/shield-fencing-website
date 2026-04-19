@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import ServicePageLayout from '@/components/ServicePageLayout'
+import { reviews } from '@/lib/reviews'
 
 export const metadata: Metadata = {
   title: 'Retaining Walls Brisbane | Timber & Concrete | Shield Fencing',
   description:
-    'Retaining wall specialists across Greater Brisbane. Treated pine, hardwood, and concrete walls up to 1m. Civil engineering backed. QBCC Licensed.',
+    'Retaining wall specialists across Greater Brisbane. Treated pine, hardwood, and concrete walls up to 1m. QBCC Licensed.',
   alternates: { canonical: 'https://shieldfencing.com.au/retaining-walls' },
 }
 
@@ -13,13 +14,10 @@ export default function RetainingWallsPage() {
     <ServicePageLayout
       heroTagline="Retaining Walls"
       title={<>Solid walls.<br /><span className="text-brand-pink">Built to hold.</span></>}
-      subtitle="Timber and concrete retaining walls up to 1m across Greater Brisbane. QBCC licensed and built to last, because what is behind the wall matters as much as what is in front."
-      intro="Brisbane's hilly terrain means retaining walls are a necessity for thousands of properties. Whether you are managing a level change between yards, preventing erosion, creating a usable outdoor space, or building a fence-on-wall, Shield Fencing builds retaining walls that are structurally sound and look the part. We are backed by a Chartered Civil Engineer (CPEng), bringing a disciplined, detail-focused approach to every project."
+      subtitle="Timber and concrete retaining walls up to 1m across Greater Brisbane. Built to last, because what is behind the wall matters as much as what is in front."
+      intro="Brisbane's hilly terrain means retaining walls are a necessity for thousands of properties. Whether you are managing a level change between yards, preventing erosion, creating a usable outdoor space, or building a fence-on-wall, Shield Fencing builds retaining walls that are structurally sound and look the part."
+      featuresTitle={<>Why choose<br /><span className="text-brand-pink">retaining walls?</span></>}
       features={[
-        {
-          title: 'Chartered Civil Engineer (CPEng)',
-          desc: 'Our leadership is CPEng-qualified, bringing a disciplined, detail-focused approach to every retaining wall project.',
-        },
         {
           title: 'Up to 1m Height',
           desc: 'We specialise in retaining walls up to 1m in height (approximately 5 sleepers). Walls above this height require engineering design and are not within our scope.',
@@ -34,11 +32,15 @@ export default function RetainingWallsPage() {
         },
         {
           title: 'Fence on Wall Ready',
-          desc: 'Need a fence on top? We design and build combined retaining wall and fencing solutions so everything integrates cleanly.',
+          desc: 'Need a fence on top? We build combined retaining wall and fencing solutions so everything integrates cleanly.',
         },
         {
-          title: 'QBCC Licensed',
-          desc: 'All retaining wall work compliant with Queensland building codes. License No 15574983. Fully insured to $10 million.',
+          title: 'Fully Licensed & Insured',
+          desc: 'All retaining wall work compliant with Queensland building codes. Fully insured to $10 million.',
+        },
+        {
+          title: 'Erosion & Land Management',
+          desc: 'Retaining walls prevent soil movement, protect garden beds, and create usable flat areas on sloping blocks.',
         },
       ]}
       variants={[
@@ -58,6 +60,7 @@ export default function RetainingWallsPage() {
           best: 'Taller walls, higher pressure loads, premium finish',
         },
       ]}
+      reviewItems={[reviews[3], reviews[13], reviews[17], reviews[25]]}
       faqs={[
         {
           q: 'Do I need council approval for a retaining wall in Brisbane?',
@@ -85,7 +88,7 @@ export default function RetainingWallsPage() {
         },
         {
           q: 'Can you install a fence on top of an existing retaining wall?',
-          a: 'We assess each project as a whole. In most cases, the retaining wall and fence need to be designed and installed together to ensure stability and long-term performance.',
+          a: 'We assess each project as a whole. In most cases, the retaining wall and fence need to be installed together to ensure stability and long-term performance.',
         },
         {
           q: 'Can you move the retaining wall to gain more land?',
@@ -105,7 +108,7 @@ export default function RetainingWallsPage() {
         },
         {
           q: 'Who is responsible for underground services?',
-          a: 'Clients should identify known underground services prior to works. We take a proactive approach on site, however unknown services can impact the installation process.',
+          a: <p>Clients should identify known underground services prior to works. We recommend contacting <a href="https://www.byda.com.au" target="_blank" rel="noopener noreferrer" className="text-brand-pink underline underline-offset-2 hover:text-brand-pink-hover">Before You Dig Australia (BYDA)</a> to request a free service locator plan before any excavation begins. We take a proactive approach on site, however unknown services can impact the installation process.</p>,
         },
         {
           q: 'Will the wall be perfectly level all the way through?',
@@ -124,6 +127,8 @@ export default function RetainingWallsPage() {
         { title: 'How Much Does a Retaining Wall Cost in Brisbane?', slug: 'how-much-does-a-retaining-wall-cost-brisbane' },
         { title: 'Timber vs Concrete Retaining Walls: Which Should You Choose?', slug: 'timber-vs-concrete-retaining-walls-brisbane' },
       ]}
+      ctaTitle={<>Ready to build<br /><span className="text-brand-pink">your retaining wall?</span></>}
+      ctaText="Whether you need to manage a slope, create a level yard, or support a new fence, we will assess your site and deliver a retaining wall built to last."
     />
   )
 }

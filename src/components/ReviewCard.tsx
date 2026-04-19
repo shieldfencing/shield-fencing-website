@@ -1,8 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 const TRUNCATE_AT = 160
+
+function SourceLogo({ source }: { source: string }) {
+  if (source === 'Google Reviews') {
+    return <Image src="/logos/svg/google-icon-logo-svgrepo-com.svg" alt="Google" width={20} height={20} className="shrink-0" />
+  }
+  return <Image src="/logos/credentials/hipages.png" alt="hipages" width={40} height={40} className="shrink-0" />
+}
 
 interface ReviewCardProps {
   name: string
@@ -62,14 +70,10 @@ export default function ReviewCard({
         <div className="mt-4 pt-4 border-t border-gray-100 shrink-0">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold text-sm text-brand-dark">{name}{suburb ? `, ${suburb}` : ''}</p>
+              <p className="font-semibold text-sm text-brand-dark">{name}{suburb ? ` from ${suburb}` : ''}</p>
               <p className="text-xs text-gray-400 mt-0.5">{service}</p>
             </div>
-            {source && (
-              <span className="text-[10px] text-gray-400 font-medium shrink-0">
-                {source === 'Google Reviews' ? 'Google' : 'hipages'}
-              </span>
-            )}
+            {source && <SourceLogo source={source} />}
           </div>
         </div>
       </div>
@@ -96,14 +100,10 @@ export default function ReviewCard({
             <div className="pt-4 border-t border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-semibold text-sm text-brand-dark">{name}{suburb ? `, ${suburb}` : ''}</p>
+                  <p className="font-semibold text-sm text-brand-dark">{name}{suburb ? ` from ${suburb}` : ''}</p>
                   <p className="text-xs text-gray-400 mt-0.5">{service}</p>
                 </div>
-                {source && (
-                  <span className="text-[10px] text-gray-400 font-medium shrink-0">
-                    {source === 'Google Reviews' ? 'Google' : 'hipages'}
-                  </span>
-                )}
+                {source && <SourceLogo source={source} />}
               </div>
             </div>
             <button

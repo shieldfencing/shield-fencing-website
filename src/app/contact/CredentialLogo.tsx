@@ -2,13 +2,13 @@
 
 import Image from 'next/image'
 
-export default function CredentialLogo({ src, alt }: { src: string; alt: string }) {
+export default function CredentialLogo({ src, alt, size = 64 }: { src: string; alt: string; size?: number }) {
   return (
     <Image
       src={src}
       alt={alt}
-      width={64}
-      height={64}
+      width={size}
+      height={size}
       className="object-contain"
     />
   )

@@ -26,13 +26,13 @@ const values = [
   },
   {
     num: '04',
-    title: 'Clear Communication',
+    title: 'Uncompromised Communication',
     desc: 'Clear updates from quote to final inspection. You will always know what is happening and when we are arriving.',
   },
 ]
 
 const credentials = [
-  { label: 'QBCC Licensed', value: 'License No 15574983' },
+  { label: 'QBCC Licensed', value: '15 574 983' },
   { label: 'ABN', value: '12 683 251 489' },
   { label: 'Insurance', value: '$10M Public Liability' },
   { label: 'Service Area', value: 'Greater Brisbane, QLD' },
@@ -57,7 +57,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* STORY */}
+      {/* STORY + VALUES first */}
       <section className="py-24 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -91,53 +91,45 @@ export default function AboutPage() {
                   peace of mind and a service they can trust.
                 </p>
               </div>
-              <div className="mt-10 flex gap-4">
-                <Link href="/get-a-quote" className="btn-primary">
-                  Enquire Now
-                </Link>
-                <Link href="/reviews" className="btn-outline">
-                  See Reviews
-                </Link>
-              </div>
             </div>
 
-            {/* Credentials */}
-            <div className="bg-white rounded-2xl p-8">
-              <h3 className="text-lg font-bold mb-6">Our credentials</h3>
-              <div className="divide-y divide-gray-100">
-                {credentials.map((c) => (
-                  <div key={c.label} className="flex justify-between items-center py-4">
-                    <span className="text-sm text-gray-500">{c.label}</span>
-                    <span className="text-sm font-semibold text-brand-dark">{c.value}</span>
+            {/* Values on right */}
+            <div className="space-y-0 divide-y divide-gray-200">
+              <h3 className="text-lg font-bold mb-6">Our values</h3>
+              {values.map((v) => (
+                <div key={v.title} className="py-6 flex gap-6">
+                  <span className="text-brand-pink text-xs font-mono tracking-widest mt-1 shrink-0">{v.num}</span>
+                  <div>
+                    <h4 className="font-bold mb-1">{v.title}</h4>
+                    <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
                   </div>
-                ))}
-              </div>
-              <div className="mt-6 bg-brand-pink/5 border border-brand-pink/10 rounded-xl p-5">
-                <p className="text-sm text-brand-dark font-semibold mb-1">
-                  Chartered Civil Engineer (CPEng)
-                </p>
-                <p className="text-xs text-gray-500 leading-relaxed">
-                  We are backed by a Chartered Civil Engineer (CPEng), bringing a
-                  disciplined, detail-focused approach to every project.
-                </p>
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* VALUES */}
+      {/* CREDENTIALS */}
       <section className="py-24 section-dark-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title text-white mb-16">Our values.</h2>
+          <h2 className="section-title text-white mb-16">Our credentials.</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
-            {values.map((v) => (
-              <div key={v.title} className="bg-brand-dark p-8">
-                <span className="text-brand-pink text-xs font-mono tracking-widest mb-6 block">{v.num}</span>
-                <h3 className="font-bold text-white text-lg mb-3">{v.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{v.desc}</p>
+            {credentials.map((c) => (
+              <div key={c.label} className="bg-brand-dark p-8">
+                <p className="text-white/40 text-xs font-semibold uppercase tracking-widest mb-3">{c.label}</p>
+                <p className="text-white text-lg font-bold">{c.value}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-8 bg-white/5 border border-white/10 rounded-xl p-6 max-w-lg">
+            <p className="text-white font-semibold text-sm mb-1">
+              Chartered Civil Engineer (CPEng)
+            </p>
+            <p className="text-white/40 text-xs leading-relaxed">
+              We are backed by a Chartered Civil Engineer (CPEng), bringing a
+              disciplined, detail-focused approach to every project.
+            </p>
           </div>
         </div>
       </section>
@@ -152,7 +144,7 @@ export default function AboutPage() {
             </h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-                Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.
+                Now you know who we are and how we work. If that sounds like the kind of company you want on your property, we would love to hear from you.
               </p>
               <Link href="/get-a-quote" className="btn-primary text-base">
                 Enquire Now &rarr;

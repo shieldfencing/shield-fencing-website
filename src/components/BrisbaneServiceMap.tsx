@@ -2,20 +2,11 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react'
 
-/* ------------------------------------------------------------------ */
-/*  Projection — real lat/lng → SVG.                                   */
-/*  889 y-units ≈ cos(27.4°) × 1000 x-units → true shape.              */
-/* ------------------------------------------------------------------ */
-
 const VIEW_W = 800
 const VIEW_H = 720
 
 const x = (lng: number) => (lng - 152.6) * 1000
 const y = (lat: number) => (-27.0 - lat) * 889
-
-/* ------------------------------------------------------------------ */
-/*  Coastline & river — drawn so every suburb sits on land             */
-/* ------------------------------------------------------------------ */
 
 const WATER_PATH = `
   M 800 0
@@ -60,11 +51,6 @@ const RIVER_PATH = `
   C 475 385 492 377 512 368
   C 536 356 552 346 560 340
 `
-
-/* ------------------------------------------------------------------ */
-/*  Regions + suburbs (real lat/lng)                                   */
-/*  famous — context anchor, dim. cbd — special pink styling.          */
-/* ------------------------------------------------------------------ */
 
 type Dir = 'R' | 'L' | 'T' | 'B'
 
@@ -227,10 +213,6 @@ function labelPos(s: Suburb) {
   }
 }
 
-/* ------------------------------------------------------------------ */
-/*  ViewBox helpers                                                    */
-/* ------------------------------------------------------------------ */
-
 interface VB {
   x: number
   y: number
@@ -255,12 +237,9 @@ function regionVB(r: Region): VB {
   return { x: cx - w / 2, y: cy - h / 2, w, h }
 }
 
-/* ------------------------------------------------------------------ */
-/*  Component                                                          */
-/* ------------------------------------------------------------------ */
-
 export default function BrisbaneServiceMap() {
   const [activeId, setActiveId] = useState<string | null>(null)
+  const [hoveredId, setHoveredId] = useState<string | null>(null)
   const [vb, setVb] = useState<VB>(FULL)
   const cur = useRef<VB>(FULL)
   const raf = useRef(0)
@@ -293,6 +272,7 @@ export default function BrisbaneServiceMap() {
       const r = REGIONS.find((r) => r.name === name)
       if (!r) return
       setActiveId(name)
+      setHoveredId(null)
       animateTo(regionVB(r))
     },
     [animateTo],
@@ -312,6 +292,8 @@ export default function BrisbaneServiceMap() {
   }, [zoomOut])
 
   const vbStr = `${vb.x.toFixed(1)} ${vb.y.toFixed(1)} ${vb.w.toFixed(1)} ${vb.h.toFixed(1)}`
+
+  const showSuburbs = activeId || hoveredId
 
   return (
     <div>
@@ -337,6 +319,7 @@ export default function BrisbaneServiceMap() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         onClick={() => { if (activeId) zoomOut() }}
+        onMouseLeave={() => { if (!activeId) setHoveredId(null) }}
         style={{
           WebkitMaskImage:
             'radial-gradient(ellipse 78% 82% at 50% 50%, black 55%, transparent 100%)',
@@ -377,6 +360,7 @@ export default function BrisbaneServiceMap() {
               opacity: activeId ? 0 : 1,
               transition: `opacity 0.3s ${activeId ? '0s' : '0.35s'}`,
             }}
+            onMouseEnter={() => { if (!activeId) setHoveredId(r.name) }}
             onClick={(e) => {
               if (activeId) return
               e.stopPropagation()
@@ -390,6 +374,7 @@ export default function BrisbaneServiceMap() {
         {/* Suburbs */}
         {REGIONS.map((r) => {
           const isActive = activeId === r.name
+          const isHovered = hoveredId === r.name
           const isInactive = activeId !== null && !isActive
 
           return (
@@ -400,6 +385,7 @@ export default function BrisbaneServiceMap() {
                 const lp = labelPos(s)
                 const famous = !!s.famous
                 const cbd = !!s.cbd
+                const showLabel = (isActive || isHovered) && !cbd
                 return (
                   <g
                     key={s.name}
@@ -408,6 +394,7 @@ export default function BrisbaneServiceMap() {
                       opacity: isInactive ? 0.12 : 1,
                       transition: 'opacity 0.5s',
                     }}
+                    onMouseEnter={() => { if (!activeId) setHoveredId(r.name) }}
                     onClick={(e) => {
                       if (activeId) return
                       e.stopPropagation()
@@ -423,15 +410,19 @@ export default function BrisbaneServiceMap() {
                       r={cbd ? 5 : famous ? 1.8 : 2.5}
                       fill={cbd ? '#db0695' : famous ? 'rgba(255,255,255,0.45)' : 'white'}
                     />
-                    {isActive && !cbd && (
+                    {showLabel && (
                       <text
                         x={lp.x}
                         y={lp.y}
                         textAnchor={lp.anchor}
                         fill={famous ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.8)'}
-                        fontSize={10}
+                        fontSize={isActive ? 10 : 8}
                         fontWeight="500"
                         fontStyle={famous ? 'italic' : 'normal'}
+                        style={{
+                          transition: 'opacity 0.3s',
+                          pointerEvents: 'none',
+                        }}
                       >
                         {s.name}
                       </text>
@@ -443,6 +434,17 @@ export default function BrisbaneServiceMap() {
           )
         })}
       </svg>
+
+      {/* Interactivity hint */}
+      <div
+        className="flex items-center justify-center gap-2 mt-3 transition-opacity duration-300"
+        style={{ opacity: showSuburbs ? 0 : 0.4 }}
+      >
+        <svg className="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+        </svg>
+        <span className="text-white/40 text-xs">Hover or click a region to explore</span>
+      </div>
     </div>
   )
 }

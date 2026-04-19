@@ -1,7 +1,50 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { reviews } from '@/lib/reviews'
+import { reviews, type Review } from '@/lib/reviews'
 import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
+
+function distributeReviews(all: Review[]): [Review[], Review[], Review[]] {
+  const hipages = all.filter((r) => r.source !== 'Google Reviews')
+  const google = all.filter((r) => r.source === 'Google Reviews')
+
+  // Seeded shuffle so order is stable per build but randomised
+  function seededShuffle<T>(arr: T[], seed: number): T[] {
+    const a = [...arr]
+    let s = seed
+    for (let i = a.length - 1; i > 0; i--) {
+      s = (s * 16807 + 0) % 2147483647
+      const j = s % (i + 1)
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+
+  const shuffledGoogle = seededShuffle(google, 42)
+  const shuffledHipages = seededShuffle(hipages, 7)
+
+  const cols: [Review[], Review[], Review[]] = [[], [], []]
+
+  // Distribute hipages evenly across columns
+  shuffledHipages.forEach((r, i) => cols[i % 3].push(r))
+
+  // Fill remaining slots with Google reviews
+  const perCol = Math.ceil(all.length / 3)
+  let gi = 0
+  for (let c = 0; c < 3; c++) {
+    while (cols[c].length < perCol && gi < shuffledGoogle.length) {
+      cols[c].push(shuffledGoogle[gi++])
+    }
+  }
+
+  // Shuffle within each column so hipages aren't always at the top
+  return [
+    seededShuffle(cols[0], 13),
+    seededShuffle(cols[1], 29),
+    seededShuffle(cols[2], 53),
+  ]
+}
+
+const [col1, col2, col3] = distributeReviews(reviews)
 
 export const metadata: Metadata = {
   title: 'Reviews & Testimonials | Shield Fencing Brisbane',
@@ -19,7 +62,7 @@ export default function ReviewsPage() {
           <p className="text-brand-pink font-semibold text-sm uppercase tracking-widest mb-6">
             Reviews & Testimonials
           </p>
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight max-w-4xl">
             Don&apos;t take our<br />
             <span className="text-brand-pink">word for it.</span>
           </h1>
@@ -51,9 +94,9 @@ export default function ReviewsPage() {
       <section className="py-24 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center gap-6 max-h-[740px] overflow-hidden">
-            <TestimonialsColumn reviews={reviews.slice(0, 8)} duration={28} />
-            <TestimonialsColumn reviews={reviews.slice(8, 16)} className="hidden md:block" duration={34} />
-            <TestimonialsColumn reviews={reviews.slice(16)} className="hidden lg:block" duration={22} />
+            <TestimonialsColumn reviews={col1} duration={56} />
+            <TestimonialsColumn reviews={col2} className="hidden md:block" duration={68} />
+            <TestimonialsColumn reviews={col3} className="hidden lg:block" duration={44} />
           </div>
         </div>
       </section>
@@ -63,12 +106,12 @@ export default function ReviewsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <h2 className="section-title">
-              Ready to join our<br />
-              <span className="text-brand-pink">happy clients?</span>
+              See what the<br />
+              <span className="text-brand-pink">fuss is about.</span>
             </h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-                Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.
+                Every review above came from a real project, a real client, and a real result. If you want the same experience, we would love to hear from you.
               </p>
               <Link href="/get-a-quote" className="btn-primary text-base">
                 Enquire Now &rarr;

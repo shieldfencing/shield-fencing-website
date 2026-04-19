@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import fs from 'fs'
-import path from 'path'
 import CredentialLogo from './CredentialLogo'
 
 export const metadata: Metadata = {
@@ -10,18 +8,7 @@ export const metadata: Metadata = {
   robots: { index: false },
 }
 
-function hasFile(name: string) {
-  return fs.existsSync(path.join(process.cwd(), 'public/logos/credentials', name))
-}
-
 export default function ContactPage() {
-  const hasQbcc = hasFile('qbcc.png') || hasFile('qbcc.svg')
-  const hasEA = hasFile('engineers-australia.png') || hasFile('engineers-australia.svg')
-  const hasABN = hasFile('abn.png') || hasFile('abn.svg')
-  const qbccSrc = hasFile('qbcc.svg') ? '/logos/credentials/qbcc.svg' : '/logos/credentials/qbcc.png'
-  const eaSrc = hasFile('engineers-australia.svg') ? '/logos/credentials/engineers-australia.svg' : '/logos/credentials/engineers-australia.png'
-  const abnSrc = hasFile('abn.svg') ? '/logos/credentials/abn.svg' : '/logos/credentials/abn.png'
-
   return (
     <>
       {/* HERO */}
@@ -33,7 +20,7 @@ export default function ContactPage() {
             <span className="text-brand-pink">with us.</span>
           </h1>
           <p className="text-white/40 text-base mt-6 max-w-md leading-relaxed">
-            For most enquiries, the online form is the fastest way to get a clear response. If you would prefer to speak directly, our details are below.
+            For most enquiries, the online form is the fastest way to get a clear response.
           </p>
           <div className="mt-8">
             <Link href="/get-a-quote" className="btn-primary">
@@ -78,15 +65,11 @@ export default function ContactPage() {
                 {/* QBCC */}
                 <div className="flex items-center gap-6 p-6 bg-brand-cream rounded-2xl">
                   <div className="w-20 h-20 shrink-0 flex items-center justify-center bg-white rounded-xl border border-gray-100 overflow-hidden">
-                    {hasQbcc ? (
-                      <CredentialLogo src={qbccSrc} alt="QBCC Licensed" />
-                    ) : (
-                      <span className="text-xs font-bold text-gray-400 text-center leading-tight px-1">QBCC</span>
-                    )}
+                    <CredentialLogo src="/logos/svg/qbcc-logo.jpg" alt="QBCC Licensed" />
                   </div>
                   <div>
                     <p className="font-bold text-brand-dark">QBCC Licensed</p>
-                    <p className="text-gray-500 text-sm mt-0.5">License No 15574983</p>
+                    <p className="text-gray-500 text-sm mt-0.5">License No 15 574 983</p>
                     <p className="text-gray-400 text-xs mt-1">Structural Landscaping (Trade) &middot; Carpentry</p>
                   </div>
                 </div>
@@ -94,11 +77,7 @@ export default function ContactPage() {
                 {/* Engineers Australia */}
                 <div className="flex items-center gap-6 p-6 bg-brand-cream rounded-2xl">
                   <div className="w-20 h-20 shrink-0 flex items-center justify-center bg-white rounded-xl border border-gray-100 overflow-hidden">
-                    {hasEA ? (
-                      <CredentialLogo src={eaSrc} alt="Engineers Australia" />
-                    ) : (
-                      <span className="text-xs font-bold text-gray-400 text-center leading-tight px-1">EA</span>
-                    )}
+                    <CredentialLogo src="/logos/credentials/Engineers_Australia_Logo.svg.png" alt="Engineers Australia" size={48} />
                   </div>
                   <div>
                     <p className="font-bold text-brand-dark">Engineers Australia</p>
@@ -109,11 +88,7 @@ export default function ContactPage() {
                 {/* ABN */}
                 <div className="flex items-center gap-6 p-6 bg-brand-cream rounded-2xl">
                   <div className="w-20 h-20 shrink-0 flex items-center justify-center bg-white rounded-xl border border-gray-100 overflow-hidden">
-                    {hasABN ? (
-                      <CredentialLogo src={abnSrc} alt="Australian Business Number" />
-                    ) : (
-                      <span className="text-xs font-bold text-gray-400 text-center leading-tight px-1">ABN</span>
-                    )}
+                    <CredentialLogo src="/logos/svg/new-australian-government-stacked-black.png" alt="Australian Government" />
                   </div>
                   <div>
                     <p className="font-bold text-brand-dark">ABN</p>
@@ -149,7 +124,7 @@ export default function ContactPage() {
               Submit an enquiry online.
             </h2>
             <p className="text-white/40 max-w-md mx-auto text-sm leading-relaxed mb-8">
-              Fill in our short form and we will review your project. If it is a good fit, we will be in touch to arrange a site visit.
+              Tell us about your project and we will get back to you with the next steps.
             </p>
             <Link href="/get-a-quote" className="btn-primary">
               Enquire Now &rarr;

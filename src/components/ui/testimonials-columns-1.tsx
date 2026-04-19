@@ -1,9 +1,17 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { type Review } from "@/lib/reviews";
 
 const READ_MORE_THRESHOLD = 140;
+
+function SourceLogo({ source }: { source: string }) {
+  if (source === "Google Reviews") {
+    return <Image src="/logos/svg/google-icon-logo-svgrepo-com.svg" alt="Google" width={18} height={18} className="shrink-0" />;
+  }
+  return <Image src="/logos/credentials/hipages.png" alt="hipages" width={36} height={36} className="shrink-0" />;
+}
 
 function ReviewModal({
   review,
@@ -50,15 +58,11 @@ function ReviewModal({
             <div>
               <p className="font-semibold text-sm text-brand-dark">
                 {review.name}
-                {review.suburb ? `, ${review.suburb}` : ""}
+                {review.suburb ? ` from ${review.suburb}` : ""}
               </p>
               <p className="text-xs text-gray-400 mt-0.5">{review.service}</p>
             </div>
-            {review.source && (
-              <span className="text-[10px] text-gray-400 font-medium shrink-0">
-                {review.source === "Google Reviews" ? "Google" : "hipages"}
-              </span>
-            )}
+            {review.source && <SourceLogo source={review.source} />}
           </div>
         </div>
         <button
@@ -128,7 +132,7 @@ function TestimonialCard({
           <div>
             <div className="font-semibold text-brand-dark text-sm leading-5">
               {review.name}
-              {review.suburb ? `, ${review.suburb}` : ""}
+              {review.suburb ? ` from ${review.suburb}` : ""}
             </div>
             {review.service && (
               <div className="text-xs text-gray-400 leading-5 mt-0.5">
@@ -136,11 +140,7 @@ function TestimonialCard({
               </div>
             )}
           </div>
-          {review.source && (
-            <span className="text-[10px] text-gray-400 font-medium shrink-0">
-              {review.source === "Google Reviews" ? "Google" : "hipages"}
-            </span>
-          )}
+          {review.source && <SourceLogo source={review.source} />}
         </div>
       </div>
     </button>

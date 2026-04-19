@@ -67,6 +67,13 @@ function getSteps(data: FormData) {
 
 // ── Validation helpers ─────────────────────────────────────────────────────
 
+function formatPhone(raw: string): string {
+  const digits = raw.replace(/\D/g, '').slice(0, 10)
+  if (digits.length <= 4) return digits
+  if (digits.length <= 7) return `${digits.slice(0, 4)} ${digits.slice(4)}`
+  return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`
+}
+
 function validatePhone(raw: string): string | null {
   const cleaned = raw.replace(/[\s\-().+]/g, '')
   // International +61 prefix
@@ -467,10 +474,10 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">Anything else we should know?</h2>
-            <p className="text-gray-400 text-sm mb-6">The more detail you can share, the better we can understand your project before arranging the next step.</p>
+            <p className="text-gray-400 text-sm mb-6">Optional — but any extra detail helps us prepare for your project.</p>
             <textarea
               className="w-full h-36 rounded-xl border-2 border-gray-200 px-4 py-3 text-sm text-brand-dark placeholder-gray-400 focus:outline-none focus:border-brand-pink transition-colors resize-none"
-              placeholder="e.g. Need to remove old timber fence, narrow side gate access, shared boundary with neighbour..."
+              placeholder="e.g. Old fence needs removing, access is through a side gate, dog needs to be secured during work..."
               value={data.details}
               onChange={(e) => setData((d) => ({ ...d, details: e.target.value }))}
             />
@@ -559,8 +566,9 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">Your contact details</h2>
-            <p className="text-gray-400 text-sm mb-6">So we can get back to you with the right information.</p>
-            <div className="space-y-4">
+            <p className="text-gray-400 text-sm mb-8">So we can get back to you with the right information.</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm font-medium text-brand-dark mb-1.5">Full name</label>
                 <input
@@ -577,25 +585,30 @@ export default function QuoteForm() {
                 {nameErr && <p className="mt-1.5 text-xs text-red-500">{nameErr}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-brand-dark mb-1.5">Phone number</label>
+                <label className="block text-sm font-medium text-brand-dark mb-1.5">Phone</label>
                 <input
                   type="tel"
                   autoComplete="tel"
+                  inputMode="tel"
                   className={`w-full rounded-xl border-2 px-4 py-3 text-sm focus:outline-none transition-colors ${
                     phoneErr ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-brand-pink'
                   }`}
                   placeholder="04XX XXX XXX"
                   value={data.phone}
-                  onChange={(e) => setData((d) => ({ ...d, phone: e.target.value }))}
+                  onChange={(e) => setData((d) => ({ ...d, phone: formatPhone(e.target.value) }))}
                   onBlur={() => touch('phone')}
                 />
                 {phoneErr && <p className="mt-1.5 text-xs text-red-500">{phoneErr}</p>}
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-brand-dark mb-1.5">Email address</label>
+                <label className="block text-sm font-medium text-brand-dark mb-1.5">Email</label>
                 <input
                   type="email"
                   autoComplete="email"
+                  inputMode="email"
                   className={`w-full rounded-xl border-2 px-4 py-3 text-sm focus:outline-none transition-colors ${
                     emailErr ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-brand-pink'
                   }`}
@@ -617,6 +630,7 @@ export default function QuoteForm() {
                 />
               </div>
             </div>
+
             {error && (
               <div className="mt-4 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600">{error}</div>
             )}

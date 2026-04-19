@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import ReviewCard from './ReviewCard'
 import FaqAccordion from './FaqAccordion'
-import { reviews } from '@/lib/reviews'
+import { reviews, type Review } from '@/lib/reviews'
 
 interface Feature {
   title: string
@@ -20,9 +20,13 @@ interface ServicePageLayoutProps {
   heroTagline: string
   intro: string
   features: Feature[]
+  featuresTitle?: React.ReactNode
   variants?: ServiceVariant[]
-  faqs: { q: string; a: string }[]
+  faqs: { q: string; a: React.ReactNode }[]
   relatedPosts?: { title: string; slug: string }[]
+  reviewItems?: Review[]
+  ctaTitle?: React.ReactNode
+  ctaText?: string
 }
 
 export default function ServicePageLayout({
@@ -31,10 +35,16 @@ export default function ServicePageLayout({
   heroTagline,
   intro,
   features,
+  featuresTitle,
   variants,
   faqs,
   relatedPosts,
+  reviewItems,
+  ctaTitle,
+  ctaText,
 }: ServicePageLayoutProps) {
+  const displayReviews = reviewItems || reviews.slice(0, 4)
+
   return (
     <>
       {/* HERO */}
@@ -72,7 +82,7 @@ export default function ServicePageLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-16">
             <h2 className="section-title">
-              Why choose Shield Fencing<br /><span className="text-brand-pink">for this job?</span>
+              {featuresTitle || <>Why choose Shield Fencing<br /><span className="text-brand-pink">for this job?</span></>}
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100">
@@ -125,16 +135,16 @@ export default function ServicePageLayout({
       {/* REVIEWS — dark panel */}
       <section className="py-24 section-dark-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
-            <h2 className="section-title text-white">What clients say.</h2>
-            <Link href="/reviews" className="text-white/50 hover:text-white text-sm transition-colors underline underline-offset-4 shrink-0">
-              All reviews →
-            </Link>
-          </div>
+          <h2 className="section-title text-white mb-14">What clients say.</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {reviews.slice(0, 4).map((r) => (
+            {displayReviews.map((r) => (
               <ReviewCard key={r.name} {...r} />
             ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link href="/reviews" className="text-white/50 hover:text-white text-sm transition-colors underline underline-offset-4">
+              All reviews &rarr;
+            </Link>
           </div>
         </div>
       </section>
@@ -159,7 +169,7 @@ export default function ServicePageLayout({
                   href={`/blog/${p.slug}`}
                   className="border border-gray-200 hover:border-brand-pink/40 rounded-xl px-5 py-4 text-sm font-medium text-brand-dark hover:text-brand-pink transition-all"
                 >
-                  {p.title} →
+                  {p.title} &rarr;
                 </Link>
               ))}
             </div>
@@ -172,12 +182,11 @@ export default function ServicePageLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <h2 className="section-title">
-              Ready to get<br />
-              <span className="text-brand-pink">a quote?</span>
+              {ctaTitle || <>Ready to get<br /><span className="text-brand-pink">a quote?</span></>}
             </h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
-                Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.
+                {ctaText || 'Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.'}
               </p>
               <Link href="/get-a-quote" className="btn-primary text-base">
                 Enquire Now &rarr;

@@ -21,7 +21,7 @@ export default function GetAQuotePage() {
             Tell us about<br />your project.
           </h1>
           <p className="text-white/40 text-sm mt-4">
-            Takes 2 minutes · No obligation · Fast response
+            Takes 1 minute · No obligation · Fast response
           </p>
         </div>
       </div>

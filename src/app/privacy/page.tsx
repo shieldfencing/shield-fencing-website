@@ -75,6 +75,8 @@ export default function PrivacyPage() {
             <h2>Data storage and security</h2>
             <p>
               We take reasonable steps to protect your personal information from misuse, loss, and unauthorised access.
+            </p>
+            <p>
               Information may be stored through secure third-party platforms used to manage enquiries and communications.
             </p>
           </section>
@@ -83,6 +85,8 @@ export default function PrivacyPage() {
             <h2>Your rights</h2>
             <p>
               You may request access to, correction of, or deletion of your personal information at any time.
+            </p>
+            <p>
               To do so, please contact us using the details below.
             </p>
           </section>

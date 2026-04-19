@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import ReviewCard from '@/components/ReviewCard'
 import FaqAccordion from '@/components/FaqAccordion'
@@ -17,22 +18,25 @@ const features = [
   { num: '03', title: 'Built for Queensland', desc: 'Steel construction handles heat, humidity, and heavy rain without buckling. Designed and tested for Australian conditions.' },
   { num: '04', title: 'Straight and Plumb', desc: 'Every panel installed level and aligned. We take pride in the finish, the kind of job you would be happy for your neighbours to see.' },
   { num: '05', title: 'Fast Installation', desc: 'Efficient installation with minimal disruption to your property and daily routine.' },
-  { num: '06', title: 'QBCC Licensed', desc: 'All work compliant with Queensland building codes. License No 15574983. Fully insured to $10 million.' },
+  { num: '06', title: 'Quality Supply Chain', desc: 'We source our Colorbond® steel and fencing components from trusted Australian suppliers to ensure consistent quality and genuine materials on every job.' },
 ]
 
 const profiles = [
   {
     name: 'Sawtooth',
+    image: '/images/profiles/SAWTOOTHOXWORKS.jpg',
     desc: 'A bold profile with distinct vertical ribs, offering a strong and structured look. Often chosen for its depth and visual texture.',
     bullets: ['Strong and defined appearance', 'Popular for modern builds', 'Adds visual interest up close'],
   },
   {
     name: 'Trimline',
+    image: '/images/profiles/TRIMLINEOXWORKS.jpg',
     desc: 'A more subtle profile with finer ribs and a softer look. Trimline sits neatly in both classic and contemporary settings.',
     bullets: ['Balanced and understated', 'Works well with any facade', 'Clean finish on both sides'],
   },
   {
     name: 'Ezyline',
+    image: '/images/profiles/Ezylineoxworks.png',
     desc: 'A smooth panel option with minimal ribs, for those wanting a flat, sleek appearance. Often paired with feature elements or landscaping.',
     bullets: ['Minimalist and modern', 'Smooth lines with low visual noise', 'Preferred for premium or custom homes'],
   },
@@ -48,18 +52,17 @@ const colours = [
 ]
 
 const faqs = [
-  { q: 'How do I get a quote?', a: 'Submit an enquiry through our website. Each enquiry is reviewed to ensure the right approach is taken before a quote or site visit is arranged.' },
   { q: 'How much does Colorbond® fencing cost?', a: 'Pricing varies depending on fence length and height, ground conditions and access, and site-specific requirements. We provide tailored pricing once your project has been properly assessed.' },
   { q: 'Do you reuse existing panels or materials?', a: 'No. We install new materials to ensure consistency, durability, and finish quality across the entire fence. Reusing existing panels often leads to mismatched appearance and reduced lifespan.' },
   { q: 'Do you handle full fence replacements?', a: 'Yes. We regularly remove and replace existing fences as part of a complete installation. This ensures a clean, consistent result across the full boundary.' },
-  { q: 'What happens after I submit an enquiry?', a: 'Once submitted, your enquiry is reviewed, additional details may be requested if required, and a site visit or quote is arranged where appropriate. This ensures the right solution is provided from the start.' },
   { q: 'How soon can you start?', a: 'Start times vary depending on current workload, materials, and project requirements. Availability is confirmed after your project has been reviewed.' },
-  { q: 'Do you deal directly with neighbours?', a: 'The project is managed directly with the client listed on the enquiry or quote. If the fence is shared, coordination with neighbours is handled by the client prior to proceeding.' },
+  { q: 'Do you deal directly with neighbours?', a: 'The project is managed directly with the client. If the fence is shared, coordination with neighbours is handled by the client prior to proceeding.' },
   { q: 'Do you need access to the site?', a: 'Yes. Clear access along the fence line is required for installation. Access limitations may affect feasibility or require adjustments to the scope.' },
   { q: 'Will installation affect my lawn or garden?', a: 'Fence installation involves digging post holes, so some disturbance along the fence line is expected. We take care during works and aim to leave the site tidy on completion.' },
   { q: 'What should I expect in the final finish?', a: 'We aim for a clean, consistent installation across the full fence line. As with all construction work, minor handling marks can occur during installation, however these are addressed as part of our quality process.' },
   { q: 'Do all Colorbond® fences look the same?', a: 'No. Results can vary depending on materials, installation methods, and workmanship. We use consistent supply and installation practices to ensure a uniform finish across the project.' },
   { q: 'Do I need council approval?', a: 'In most cases, standard boundary fencing does not require approval. Requirements can vary depending on location and height. We can advise based on your property.' },
+  { q: 'Where do you source your materials?', a: 'We source our Colorbond® steel and fencing components from trusted Australian suppliers. This ensures genuine BlueScope steel, consistent quality, and reliable availability for every project.' },
 ]
 
 export default function ColorbondPage() {
@@ -98,8 +101,8 @@ export default function ColorbondPage() {
       <section className="py-24 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title mb-16">
-            Why choose Shield Fencing<br />
-            <span className="text-brand-pink">for this job?</span>
+            Why choose<br />
+            <span className="text-brand-pink">Colorbond® steel fencing?</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
             {features.map((f) => (
@@ -124,6 +127,14 @@ export default function ColorbondPage() {
             {profiles.map((p, i) => (
               <div key={p.name} className="bg-brand-cream p-10 flex flex-col gap-6">
                 <span className="text-brand-pink text-xs font-mono tracking-widest">{String(i + 1).padStart(2, '0')}</span>
+                <div className="relative w-full aspect-[3/2] rounded-xl overflow-hidden bg-white">
+                  <Image
+                    src={p.image}
+                    alt={`${p.name} Colorbond profile`}
+                    fill
+                    className="object-contain scale-150"
+                  />
+                </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold mb-3">{p.name}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-6">{p.desc}</p>
@@ -159,7 +170,7 @@ export default function ColorbondPage() {
                 rel="noopener noreferrer"
                 className="text-brand-pink text-sm font-semibold hover:underline underline-offset-4"
               >
-                View the full Colorbond® Colour Guide →
+                View the full Colorbond® Colour Guide &rarr;
               </a>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -180,14 +191,14 @@ export default function ColorbondPage() {
       {/* REVIEWS */}
       <section className="py-24 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
-            <h2 className="section-title">What clients say.</h2>
-            <Link href="/reviews" className="text-gray-400 hover:text-brand-dark text-sm transition-colors underline underline-offset-4 shrink-0">All reviews →</Link>
-          </div>
+          <h2 className="section-title mb-14">What clients say.</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {reviews.slice(0, 4).map((r) => (
+            {[reviews[4], reviews[7], reviews[6], reviews[29]].map((r) => (
               <ReviewCard key={r.name} {...r} />
             ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link href="/reviews" className="btn-outline">All Reviews</Link>
           </div>
         </div>
       </section>
@@ -210,7 +221,7 @@ export default function ColorbondPage() {
               { title: 'How Much Does a New Fence Cost in Brisbane?', slug: 'how-much-does-a-fence-cost-brisbane' },
             ].map((p) => (
               <Link key={p.slug} href={`/blog/${p.slug}`} className="border border-gray-200 hover:border-brand-pink/40 rounded-xl px-5 py-4 text-sm font-medium text-brand-dark hover:text-brand-pink transition-all">
-                {p.title} →
+                {p.title} &rarr;
               </Link>
             ))}
           </div>

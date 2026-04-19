@@ -48,7 +48,7 @@ export default function Home() {
         {/* Scrolling credential strip */}
         <div className="mt-16 border-t border-white/10 pt-8 overflow-hidden">
           <div className="flex animate-marquee whitespace-nowrap">
-            {[...credentials, ...credentials, ...credentials, ...credentials].map((c, i) => (
+            {[...credentials, ...credentials].map((c, i) => (
               <span key={i} className="text-white/30 text-sm flex items-center gap-3 shrink-0 mx-6">
                 <span className="w-1 h-1 rounded-full bg-brand-pink inline-block" />
                 {c}
@@ -123,7 +123,7 @@ export default function Home() {
           </blockquote>
           <div className="mt-10 flex items-center justify-center gap-4">
             <div className="text-left">
-              <p className="text-white font-semibold text-sm">Karin, Riverhills</p>
+              <p className="text-white font-semibold text-sm">Karin from Riverhills</p>
               <p className="text-white/40 text-xs">Retaining Wall & Colorbond Fencing</p>
             </div>
           </div>
@@ -135,54 +135,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY SHIELD */}
-      <section className="py-24 lg:py-32 section-white-panel">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <h2 className="section-title">
-                Built on trust.<br />
-                <span className="text-brand-pink">Delivered with care.</span>
-              </h2>
-              <p className="mt-6 text-gray-500 leading-relaxed max-w-md">
-                We envision a future where everyone enjoys high-quality fencing that protects what matters most. Too many people settle for fences that don&apos;t last, and contractors who don&apos;t show up. We build fences the right way, with quality and care. Every job. Every time.
-              </p>
-              <Link href="/about" className="btn-primary mt-10 inline-flex">
-                About Shield Fencing
-              </Link>
-            </div>
-            <div className="space-y-0 divide-y divide-gray-200">
-              {[
-                { title: 'Unmatched Reliability', desc: 'We show up on time and we finish on schedule. Your time is valuable and we treat it that way.' },
-                { title: 'Ultimate Customer Care', desc: 'Every project is handled with genuine care and attention. We treat your property as if it were our own.' },
-                { title: 'Unwavering Integrity', desc: 'We do what we say we will do. No hidden costs, no shortcuts, no excuses. If something is not right, we fix it.' },
-                { title: 'Clear Communication', desc: 'Clear updates from quote to final inspection. You will always know what is happening and when we are arriving.' },
-              ].map((item) => (
-                <div key={item.title} className="py-6 flex gap-6">
-                  <svg className="w-5 h-5 text-brand-pink shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                  <div>
-                    <h4 className="font-bold mb-1">{item.title}</h4>
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* STATS */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: '4.9 \u2605', label: 'Google Rating' },
               { value: 'QBCC', label: 'License No 15574983' },
               { value: '1000m+', label: 'Fencing Installed' },
               { value: '$10M', label: 'Public Liability Insurance' },
-              { value: 'CPEng', label: 'Chartered Civil Engineer' },
             ].map((s) => (
               <div key={s.label}>
                 <p className="text-4xl md:text-5xl font-bold text-brand-dark">{s.value}</p>
@@ -196,18 +157,18 @@ export default function Home() {
       {/* REVIEWS */}
       <section className="py-24 lg:py-32 section-white-panel">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
-            <h2 className="section-title">
-              Happy clients.
-            </h2>
-            <Link href="/reviews" className="btn-outline shrink-0 w-fit">
-              All Reviews
-            </Link>
-          </div>
+          <h2 className="section-title mb-14">
+            Happy clients.
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[reviews[3], reviews[4], reviews[7], reviews[13]].map((r) => (
               <ReviewCard key={r.name} {...r} />
             ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link href="/reviews" className="btn-outline">
+              All Reviews
+            </Link>
           </div>
         </div>
       </section>

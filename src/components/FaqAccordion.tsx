@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 interface FaqItem {
   q: string
-  a: string
+  a: React.ReactNode
 }
 
 export default function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
@@ -45,7 +45,7 @@ export default function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
                 isOpen ? 'max-h-96 mt-3' : 'max-h-0'
               }`}
             >
-              <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+              <div className="text-gray-500 text-sm leading-relaxed">{faq.a}</div>
             </div>
           </div>
         )
