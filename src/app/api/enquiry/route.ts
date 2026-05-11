@@ -19,6 +19,7 @@ const CSV_HEADERS = [
   'Wall Length',
   'Property Relation',
   'Shared Boundary',
+  'Project Stage',
   'Timeline',
   'Priority',
   'Details',
@@ -80,6 +81,7 @@ export async function POST(req: NextRequest) {
       wallLength,
       propertyRelation,
       sharedBoundary,
+      projectStage,
       timeline,
       priority,
       details,
@@ -159,6 +161,7 @@ export async function POST(req: NextRequest) {
               ${wallLength ? row('Approximate total wall length', wallLength) : ''}
               ${propertyRelation ? row('Property relation', propertyRelation) : ''}
               ${sharedBoundary ? row('Shared boundary', sharedBoundary === 'yes' ? 'Yes — shared boundary' : sharedBoundary === 'no' ? 'No — fully within my property' : 'Not sure') : ''}
+              ${projectStage ? row('Project stage', projectStage) : ''}
               ${timeline ? row('When are you hoping to have your fencing project started?', timeline) : ''}
               ${priority ? row('Beyond the quality of the fence itself, what matters most to you when choosing a fencing contractor?', priority) : ''}
               ${details ? row('Project details (optional)', details) : ''}
@@ -258,6 +261,7 @@ export async function POST(req: NextRequest) {
         'Wall Length': wallLength ?? '',
         'Property Relation': propertyRelation ?? '',
         'Shared Boundary': sharedBoundaryLabel,
+        'Project Stage': projectStage ?? '',
         'Timeline': timeline ?? '',
         'Priority': priority ?? '',
         'Details': details ?? '',
@@ -284,6 +288,7 @@ export async function POST(req: NextRequest) {
       'Wall Length': wallLength ?? '',
       'Property Relation': propertyRelation ?? '',
       'Shared Boundary': sharedBoundaryLabel,
+      'Project Stage': projectStage ?? '',
       'Timeline': timeline ?? '',
       'Priority': priority ?? '',
       'Details': details ?? '',

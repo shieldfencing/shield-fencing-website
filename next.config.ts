@@ -29,7 +29,9 @@ const nextConfig: NextConfig = {
       { source: '/timber-fencing', destination: '/timber', permanent: true },
       { source: '/timber-fencing-brisbane', destination: '/timber', permanent: true },
 
-      // Services index page
+      // Fencing solutions / Services index — old combined page
+      { source: '/fencing-solutions', destination: '/', permanent: true },
+      { source: '/fencing-solutions/:path*', destination: '/', permanent: true },
       { source: '/services', destination: '/', permanent: true },
 
       // Contact / Quote — old URL patterns
