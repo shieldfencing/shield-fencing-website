@@ -5,7 +5,7 @@ import { reviews } from '@/lib/reviews'
 export const metadata: Metadata = {
   title: 'Timber Fencing Brisbane | Hardwood & Treated Pine | Shield Fencing',
   description:
-    'Timber fencing specialists across Greater Brisbane. Hardwood and treated pine options for privacy, character, and natural beauty. QBCC Licensed.',
+    'Timber fencing specialists in Brisbane. Hardwood and treated pine options including lapped and capped, standard butted and good neighbour styles. QBCC Licensed.',
   alternates: { canonical: 'https://shieldfencing.com.au/timber' },
 }
 

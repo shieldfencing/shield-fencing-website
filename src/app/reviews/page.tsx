@@ -47,7 +47,7 @@ function distributeReviews(all: Review[]): [Review[], Review[], Review[]] {
 const [col1, col2, col3] = distributeReviews(reviews)
 
 export const metadata: Metadata = {
-  title: 'Reviews & Testimonials | Shield Fencing Brisbane',
+  title: 'Shield Fencing Reviews | 4.9 Star Google Rating | Brisbane Fencing',
   description:
     'Read what Brisbane homeowners say about Shield Fencing. 4.9-star Google rating. Colorbond, timber fencing, and retaining walls across Greater Brisbane.',
   alternates: { canonical: 'https://shieldfencing.com.au/reviews' },
@@ -75,14 +75,14 @@ export default function ReviewsPage() {
       {/* STATS PANEL */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto text-center">
             {[
               { value: '4.9 \u2605', label: 'Google Rating' },
               { value: '5.0 \u2605', label: 'hipages' },
               { value: '1000m+', label: 'Fencing Installed' },
             ].map((s) => (
               <div key={s.label} className="flex flex-col items-center gap-2">
-                <p className="text-5xl font-bold text-brand-dark">{s.value}</p>
+                <p className="text-3xl sm:text-5xl font-bold text-brand-dark">{s.value}</p>
                 <p className="text-sm text-gray-400">{s.label}</p>
               </div>
             ))}
@@ -113,7 +113,7 @@ export default function ReviewsPage() {
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
                 Every review above came from a real project, a real client, and a real result. If you want the same experience, we would love to hear from you.
               </p>
-              <Link href="/get-a-quote" className="btn-primary text-base">
+              <Link href="/enquire-now" className="btn-primary text-base">
                 Enquire Now &rarr;
               </Link>
             </div>

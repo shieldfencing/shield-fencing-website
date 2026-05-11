@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import ReviewCard from './ReviewCard'
 import FaqAccordion from './FaqAccordion'
+import FaqSchema from './FaqSchema'
 import { reviews, type Review } from '@/lib/reviews'
 
 interface Feature {
@@ -44,9 +45,13 @@ export default function ServicePageLayout({
   ctaText,
 }: ServicePageLayoutProps) {
   const displayReviews = reviewItems || reviews.slice(0, 4)
+  const schemaFaqs = faqs
+    .filter((f): f is { q: string; a: string } => typeof f.a === 'string')
+    .map((f) => ({ q: f.q, a: f.a }))
 
   return (
     <>
+      <FaqSchema faqs={schemaFaqs} />
       {/* HERO */}
       <section className="section-dark-hero pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +63,7 @@ export default function ServicePageLayout({
           </h1>
           <p className="text-white/50 text-lg leading-relaxed mt-8 max-w-xl">{subtitle}</p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link href="/get-a-quote" className="btn-primary w-fit">
+            <Link href="/enquire-now" className="btn-primary w-fit">
               Enquire Now
             </Link>
             <Link href="/reviews" className="btn-secondary w-fit">
@@ -188,7 +193,7 @@ export default function ServicePageLayout({
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
                 {ctaText || 'Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.'}
               </p>
-              <Link href="/get-a-quote" className="btn-primary text-base">
+              <Link href="/enquire-now" className="btn-primary text-base">
                 Enquire Now &rarr;
               </Link>
             </div>

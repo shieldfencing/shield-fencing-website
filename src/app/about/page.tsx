@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Us | Shield Fencing Brisbane',
+  title: 'About Shield Fencing | Brisbane\'s QBCC Licensed Fencing Specialists',
   description:
-    'Meet the team behind Shield Fencing. QBCC licensed, civil engineering backed, and committed to protecting what matters most across Greater Brisbane.',
+    'Meet the team behind Shield Fencing. QBCC Licensed, backed by a Chartered Civil Engineer, delivering quality fencing and retaining walls across Greater Brisbane.',
   alternates: { canonical: 'https://shieldfencing.com.au/about' },
 }
 
@@ -146,7 +146,7 @@ export default function AboutPage() {
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
                 Now you know who we are and how we work. If that sounds like the kind of company you want on your property, we would love to hear from you.
               </p>
-              <Link href="/get-a-quote" className="btn-primary text-base">
+              <Link href="/enquire-now" className="btn-primary text-base">
                 Enquire Now &rarr;
               </Link>
             </div>

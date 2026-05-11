@@ -3,12 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ReviewCard from '@/components/ReviewCard'
 import FaqAccordion from '@/components/FaqAccordion'
+import FaqSchema from '@/components/FaqSchema'
 import { reviews } from '@/lib/reviews'
 
 export const metadata: Metadata = {
-  title: 'Colorbond® Steel Fencing Brisbane | Shield Fencing',
+  title: 'Colorbond Fencing Brisbane | Steel Fence Installation | Shield Fencing',
   description:
-    'Expert Colorbond® steel fencing installation across Greater Brisbane. Durable, low-maintenance, available in 22 colours. QBCC Licensed.',
+    'Expert Colorbond steel fencing installation across Greater Brisbane. Durable, low-maintenance fencing in 22 colours. QBCC Licensed. Get a quote today.',
   alternates: { canonical: 'https://shieldfencing.com.au/colorbond' },
 }
 
@@ -68,6 +69,7 @@ const faqs = [
 export default function ColorbondPage() {
   return (
     <>
+      <FaqSchema faqs={faqs} />
       {/* HERO */}
       <section className="section-dark-hero pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,7 +84,7 @@ export default function ColorbondPage() {
             Durable, low-maintenance Colorbond® steel fencing installed by QBCC-licensed specialists across Greater Brisbane. Available in 22 Colorbond® colours to match your home.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link href="/get-a-quote" className="btn-primary w-fit">Enquire Now</Link>
+            <Link href="/enquire-now" className="btn-primary w-fit">Enquire Now</Link>
             <Link href="/reviews" className="btn-secondary w-fit">Read Reviews</Link>
           </div>
         </div>
@@ -235,7 +237,7 @@ export default function ColorbondPage() {
             <h2 className="section-title">Thinking About a<br /><span className="text-brand-pink">Colorbond® Fence?</span></h2>
             <div>
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">We will keep things simple, help you choose what works best for your space, and deliver a clean, lasting result with care and consistency.</p>
-              <Link href="/get-a-quote" className="btn-primary text-base">Enquire Now &rarr;</Link>
+              <Link href="/enquire-now" className="btn-primary text-base">Enquire Now &rarr;</Link>
             </div>
           </div>
         </div>

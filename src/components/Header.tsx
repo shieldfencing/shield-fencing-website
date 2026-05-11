@@ -72,7 +72,7 @@ export default function Header() {
 
             {/* Desktop CTA */}
             <div className="hidden lg:block">
-              <Link href="/get-a-quote" className="btn-primary text-sm py-3 px-6">
+              <Link href="/enquire-now" className="btn-primary text-sm py-3 px-6">
                 Enquire Now
               </Link>
             </div>
@@ -81,7 +81,7 @@ export default function Header() {
             <div className="lg:hidden flex items-center gap-3 relative z-10">
               {!menuOpen && (
                 <Link
-                  href="/get-a-quote"
+                  href="/enquire-now"
                   className="text-xs font-semibold text-white bg-brand-pink rounded-full px-4 py-2"
                 >
                   Enquire Now
@@ -161,7 +161,7 @@ export default function Header() {
             style={{ transitionDelay: menuOpen ? '380ms' : '0ms' }}
           >
             <Link
-              href="/get-a-quote"
+              href="/enquire-now"
               onClick={() => setMenuOpen(false)}
               className="block w-full text-center py-4 rounded-full bg-brand-pink text-white font-semibold text-sm tracking-wide"
             >

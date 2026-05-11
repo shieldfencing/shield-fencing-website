@@ -5,9 +5,9 @@ import BrisbaneServiceMap from '@/components/BrisbaneServiceMap'
 import { reviews } from '@/lib/reviews'
 
 export const metadata: Metadata = {
-  title: 'Shield Fencing | Brisbane Fencing & Retaining Wall Specialists',
+  title: 'Fencing Brisbane | Colorbond, Timber & Retaining Walls | Shield Fencing',
   description:
-    'Colorbond, timber fencing and retaining wall specialists across Greater Brisbane. QBCC Licensed. Protecting what matters most.',
+    'Brisbane\'s trusted fencing specialists. Colorbond steel, timber fencing & retaining walls across Greater Brisbane. QBCC Licensed. Enquire today for a free site visit.',
   alternates: { canonical: 'https://shieldfencing.com.au' },
 }
 
@@ -36,7 +36,7 @@ export default function Home() {
             at a Time.
           </h1>
           <div className="mt-12 flex flex-col sm:flex-row gap-4">
-            <Link href="/get-a-quote" className="btn-primary text-base w-fit">
+            <Link href="/enquire-now" className="btn-primary text-base w-fit">
               Enquire Now
             </Link>
             <Link href="/reviews" className="btn-secondary text-base w-fit">
@@ -108,6 +108,29 @@ export default function Home() {
                 </span>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <h2 className="section-title">
+              Brisbane&apos;s trusted<br />
+              <span className="text-brand-pink">fencing contractor.</span>
+            </h2>
+            <div>
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                Shield Fencing is a QBCC licensed fencing contractor serving Greater Brisbane. We specialise in Colorbond fencing installation, timber fence building, and retaining wall construction for residential properties across the city. Every project is managed directly by our team, from the initial site visit through to final handover, so nothing gets lost in translation.
+              </p>
+              <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                Backed by a Chartered Civil Engineer and covered by $10 million in public liability insurance, we bring a level of care and accountability that sets us apart. Whether you need a boundary fence replaced, a new privacy screen, or a retaining wall to manage a slope, we deliver a result you can be proud of.
+              </p>
+              <Link href="/about" className="text-brand-pink font-semibold text-sm hover:underline underline-offset-4 transition-all">
+                Learn more about us &rarr;
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -206,7 +229,7 @@ export default function Home() {
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
                 Whether you are replacing an old fence or starting from scratch, we will guide you through every step and deliver a result you will be proud of.
               </p>
-              <Link href="/get-a-quote" className="btn-primary text-base">
+              <Link href="/enquire-now" className="btn-primary text-base">
                 Enquire Now &rarr;
               </Link>
             </div>

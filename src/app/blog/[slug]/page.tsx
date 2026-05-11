@@ -44,6 +44,39 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            description: post.excerpt,
+            author: { '@type': 'Person', name: post.author || 'Shield Fencing' },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Shield Fencing',
+              url: 'https://shieldfencing.com.au',
+            },
+            datePublished: post.date,
+            mainEntityOfPage: `https://shieldfencing.com.au/blog/${slug}`,
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://shieldfencing.com.au' },
+              { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://shieldfencing.com.au/blog' },
+              { '@type': 'ListItem', position: 3, name: post.title, item: `https://shieldfencing.com.au/blog/${slug}` },
+            ],
+          }),
+        }}
+      />
       {/* HERO */}
       <section className="section-dark-hero pt-32 pb-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +118,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <p className="text-white/50 mb-8">
               Fast response. We service all of Greater Brisbane.
             </p>
-            <Link href="/get-a-quote" className="btn-primary">
+            <Link href="/enquire-now" className="btn-primary">
               Enquire Now →
             </Link>
           </div>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { reviews } from '@/lib/reviews'
 import { getAllPosts } from '@/lib/posts'
 import ReviewCard from '@/components/ReviewCard'
+import ConversionEvent from '@/components/ConversionEvent'
 
 export const metadata: Metadata = {
   title: 'Thank You | Shield Fencing',
@@ -22,6 +23,9 @@ export default function ThankYouPage() {
 
   return (
     <>
+      {/* Google Ads conversion fires when this page loads */}
+      <ConversionEvent />
+
       {/* HERO */}
       <section className="section-dark-hero pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

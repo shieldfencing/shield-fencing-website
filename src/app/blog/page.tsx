@@ -50,7 +50,7 @@ export default function BlogPage() {
               <p className="text-gray-500 text-lg mb-8 leading-relaxed">
                 We service all of Greater Brisbane.
               </p>
-              <Link href="/get-a-quote" className="btn-primary text-base">
+              <Link href="/enquire-now" className="btn-primary text-base">
                 Enquire Now →
               </Link>
             </div>

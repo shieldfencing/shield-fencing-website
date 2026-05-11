@@ -5,7 +5,7 @@ import { reviews } from '@/lib/reviews'
 export const metadata: Metadata = {
   title: 'Retaining Walls Brisbane | Timber & Concrete | Shield Fencing',
   description:
-    'Retaining wall specialists across Greater Brisbane. Treated pine, hardwood, and concrete walls up to 1m. QBCC Licensed.',
+    'Retaining wall builders in Brisbane. Concrete sleeper, treated pine and hardwood walls up to 1m. QBCC Licensed with $10M insurance. Enquire today.',
   alternates: { canonical: 'https://shieldfencing.com.au/retaining-walls' },
 }
 

@@ -3,9 +3,9 @@ import Link from 'next/link'
 import CredentialLogo from './CredentialLogo'
 
 export const metadata: Metadata = {
-  title: 'Contact | Shield Fencing',
-  description: 'Shield Fencing contact information, credentials, and licensing details.',
-  robots: { index: false },
+  title: 'Contact Shield Fencing Brisbane | Phone, Email & Credentials',
+  description: 'Get in touch with Shield Fencing. QBCC Licensed fencing and retaining wall specialists servicing Greater Brisbane. Call 0411 496 474.',
+  alternates: { canonical: 'https://shieldfencing.com.au/contact' },
 }
 
 export default function ContactPage() {
@@ -23,7 +23,7 @@ export default function ContactPage() {
             For most enquiries, the online form is the fastest way to get a clear response.
           </p>
           <div className="mt-8">
-            <Link href="/get-a-quote" className="btn-primary">
+            <Link href="/enquire-now" className="btn-primary">
               Enquire Now
             </Link>
           </div>
@@ -126,7 +126,7 @@ export default function ContactPage() {
             <p className="text-white/40 max-w-md mx-auto text-sm leading-relaxed mb-8">
               Tell us about your project and we will get back to you with the next steps.
             </p>
-            <Link href="/get-a-quote" className="btn-primary">
+            <Link href="/enquire-now" className="btn-primary">
               Enquire Now &rarr;
             </Link>
           </div>

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { upload } from '@vercel/blob/client'
 import { searchSuburbs, type Suburb } from '@/lib/qld-suburbs'
 
 type ProjectType = 'retaining-wall' | 'colorbond' | 'timber'
@@ -12,8 +13,10 @@ interface FormData {
   wallLength: string
   propertyRelation: string
   sharedBoundary: string
+  projectStage: string
   timeline: string
   priority: string
+  referral: string
   details: string
   photos: File[]
   priceAlignment: string
@@ -22,7 +25,6 @@ interface FormData {
   phone: string
   suburb: string
   suburbValid: boolean
-  referral: string
 }
 
 const INITIAL: FormData = {
@@ -31,8 +33,10 @@ const INITIAL: FormData = {
   wallLength: '',
   propertyRelation: '',
   sharedBoundary: '',
+  projectStage: '',
   timeline: '',
   priority: '',
+  referral: '',
   details: '',
   photos: [],
   priceAlignment: '',
@@ -41,7 +45,6 @@ const INITIAL: FormData = {
   phone: '',
   suburb: '',
   suburbValid: false,
-  referral: '',
 }
 
 
@@ -49,7 +52,7 @@ function getPriceRange(data: FormData): { low: string; high: string } | null {
   const fencingOnly = data.projectTypes.length > 0 && data.projectTypes.every((t) => t !== 'retaining-wall')
   if (!fencingOnly) return null
   if (data.fencingLength === 'Under 15 m') return { low: '$2,500', high: '$4,500' }
-  if (data.fencingLength === '15–30 m') return { low: '$4,500', high: '$9,750' }
+  if (data.fencingLength === '15-30 m') return { low: '$4,500', high: '$9,750' }
   return null
 }
 
@@ -59,7 +62,9 @@ function getSteps(data: FormData) {
   const steps: string[] = ['project-type']
   if (hasFencing) steps.push('fencing-length')
   if (hasWall) steps.push('wall-length')
-  steps.push('property-relation', 'shared-boundary', 'timeline', 'priority', 'details', 'photos')
+  steps.push('property-relation', 'shared-boundary', 'project-stage')
+  if (data.projectStage === 'Ready to move forward') steps.push('timeline')
+  steps.push('priority', 'details', 'photos')
   if (getPriceRange(data)) steps.push('price-check')
   steps.push('contact', 'referral')
   return steps
@@ -199,7 +204,7 @@ function SuburbAutocomplete({
 // Steps that auto-advance on single selection
 const AUTO_ADVANCE_STEPS = new Set([
   'fencing-length', 'wall-length', 'property-relation',
-  'shared-boundary', 'timeline', 'priority', 'price-check',
+  'shared-boundary', 'project-stage', 'timeline', 'priority', 'referral', 'price-check',
 ])
 
 function ProgressBar({ current, total }: { current: number; total: number }) {
@@ -261,8 +266,8 @@ export default function QuoteForm() {
   const [stepIndex, setStepIndex] = useState(0)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [fileError, setFileError] = useState('')
   const [contactTouched, setContactTouched] = useState<Record<string, boolean>>({})
-  const [referralTouched, setReferralTouched] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
 
   const steps = getSteps(data)
@@ -298,8 +303,10 @@ export default function QuoteForm() {
       case 'wall-length': return !!data.wallLength
       case 'property-relation': return !!data.propertyRelation
       case 'shared-boundary': return !!data.sharedBoundary
+      case 'project-stage': return !!data.projectStage
       case 'timeline': return !!data.timeline
       case 'priority': return !!data.priority
+      case 'referral': return !!data.referral
       case 'details': return true
       case 'photos': return true
       case 'price-check': return !!data.priceAlignment
@@ -310,7 +317,6 @@ export default function QuoteForm() {
           !validateEmail(data.email) &&
           data.suburbValid
         )
-      case 'referral': return !!data.referral
       default: return false
     }
   }
@@ -328,6 +334,15 @@ export default function QuoteForm() {
     setSubmitting(true)
     setError('')
     try {
+      const uploadedFiles: { url: string; filename: string }[] = []
+      for (const file of data.photos) {
+        const blob = await upload(file.name, file, {
+          access: 'public',
+          handleUploadUrl: '/api/upload',
+        })
+        uploadedFiles.push({ url: blob.url, filename: file.name })
+      }
+
       const res = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -337,15 +352,17 @@ export default function QuoteForm() {
           wallLength: data.wallLength,
           propertyRelation: data.propertyRelation,
           sharedBoundary: data.sharedBoundary,
+          projectStage: data.projectStage,
           timeline: data.timeline,
           priority: data.priority,
+          referral: data.referral,
           priceAlignment: data.priceAlignment,
           details: data.details,
           name: data.name,
           email: data.email,
           phone: data.phone,
           suburb: data.suburb,
-          referral: data.referral,
+          files: uploadedFiles,
         }),
       })
       if (!res.ok) throw new Error('Submission failed')
@@ -365,7 +382,7 @@ export default function QuoteForm() {
             <p className="text-gray-400 text-sm mb-6">Select all that apply.</p>
             <div className="space-y-3">
               <OptionButton label="Retaining wall" sub="Up to 1m height (approx. 5 sleepers)" selected={data.projectTypes.includes('retaining-wall')} onClick={() => toggleProject('retaining-wall')} multi />
-              <OptionButton label="Colorbond® Steel fence" selected={data.projectTypes.includes('colorbond')} onClick={() => toggleProject('colorbond')} multi />
+              <OptionButton label="Colorbond fence" selected={data.projectTypes.includes('colorbond')} onClick={() => toggleProject('colorbond')} multi />
               <OptionButton label="Timber fence" selected={data.projectTypes.includes('timber')} onClick={() => toggleProject('timber')} multi />
             </div>
           </div>
@@ -377,7 +394,7 @@ export default function QuoteForm() {
             <h2 className="text-2xl font-bold text-brand-dark mb-2">Approximate total fencing length</h2>
             <p className="text-gray-400 text-sm mb-6">Include all sections combined (side, rear, front etc.)</p>
             <div className="space-y-3">
-              {['Under 15 m', '15–30 m', '30–60 m', '60–100 m', 'Over 100 m'].map((opt) => (
+              {['Under 15 m', '15-30 m', '30-60 m', '60-100 m', 'Over 100 m'].map((opt) => (
                 <OptionButton key={opt} label={opt} selected={data.fencingLength === opt}
                   onClick={() => selectAndAdvance((d) => ({ ...d, fencingLength: opt }))} />
               ))}
@@ -391,7 +408,7 @@ export default function QuoteForm() {
             <h2 className="text-2xl font-bold text-brand-dark mb-2">Approximate total retaining wall length</h2>
             <p className="text-gray-400 text-sm mb-6">Include all sections combined.</p>
             <div className="space-y-3">
-              {['Under 5 m', '5–10 m', '10–20 m', '20–30 m', 'Over 30 m'].map((opt) => (
+              {['Under 5 m', '5-10 m', '10-20 m', '20-30 m', 'Over 30 m'].map((opt) => (
                 <OptionButton key={opt} label={opt} selected={data.wallLength === opt}
                   onClick={() => selectAndAdvance((d) => ({ ...d, wallLength: opt }))} />
               ))}
@@ -403,14 +420,13 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">Who are you in relation to the property?</h2>
-            <p className="text-gray-400 text-sm mb-6">This helps us plan the next steps appropriately.</p>
-            <div className="space-y-3">
+            <div className="space-y-3 mt-6">
               {[
                 'I own and live at the property',
                 'I own the property (investment)',
                 'I manage the property',
-                "I'm a builder / developer",
-                "I'm renting",
+                'I am the builder',
+                'I am renting',
               ].map((opt) => (
                 <OptionButton key={opt} label={opt} selected={data.propertyRelation === opt}
                   onClick={() => selectAndAdvance((d) => ({ ...d, propertyRelation: opt }))} />
@@ -422,13 +438,13 @@ export default function QuoteForm() {
       case 'shared-boundary':
         return (
           <div>
-            <h2 className="text-2xl font-bold text-brand-dark mb-2">Is any part of this project along a shared boundary with a neighbour?</h2>
-            <p className="text-gray-400 text-sm mb-6">This helps us understand access and coordination required.</p>
-            <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-brand-dark mb-2">If this involves a shared boundary, where are things at with your neighbour?</h2>
+            <div className="space-y-3 mt-6">
               {[
-                { label: 'No, fully within my property', value: 'no' },
-                { label: 'Yes, shared boundary', value: 'yes' },
-                { label: 'Not sure', value: 'unsure' },
+                { label: 'Already discussed and agreed', value: 'agreed' },
+                { label: 'Planning to speak with them soon', value: 'planning' },
+                { label: "Have not spoken yet", value: 'not-spoken' },
+                { label: 'Not applicable; this is not a shared boundary', value: 'na' },
               ].map((opt) => (
                 <OptionButton key={opt.value} label={opt.label} selected={data.sharedBoundary === opt.value}
                   onClick={() => selectAndAdvance((d) => ({ ...d, sharedBoundary: opt.value }))} />
@@ -437,15 +453,35 @@ export default function QuoteForm() {
           </div>
         )
 
+      case 'project-stage':
+        return (
+          <div>
+            <h2 className="text-2xl font-bold text-brand-dark mb-2">What stage is your project at?</h2>
+            <div className="space-y-3 mt-6">
+              {[
+                { label: 'Ready to move forward', sub: 'Prepared to organise a site visit and proceed if everything aligns' },
+                { label: 'Planning ahead', sub: 'Still exploring options, pricing, approvals, or timing' },
+              ].map((opt) => (
+                <OptionButton key={opt.label} label={opt.label} sub={opt.sub} selected={data.projectStage === opt.label}
+                  onClick={() => selectAndAdvance((d) => ({ ...d, projectStage: opt.label, timeline: opt.label !== 'Ready to move forward' ? '' : d.timeline }))} />
+              ))}
+            </div>
+          </div>
+        )
+
       case 'timeline':
         return (
           <div>
-            <h2 className="text-2xl font-bold text-brand-dark mb-2">When are you hoping to start?</h2>
-            <p className="text-gray-400 text-sm mb-6">This helps us tailor our approach to suit your project timing.</p>
-            <div className="space-y-3">
-              {['As soon as possible', '2\u20134 weeks', '4\u20138 weeks', '2\u20133 months', 'No specific timeframe'].map((opt) => (
-                <OptionButton key={opt} label={opt} selected={data.timeline === opt}
-                  onClick={() => selectAndAdvance((d) => ({ ...d, timeline: opt }))} />
+            <h2 className="text-2xl font-bold text-brand-dark mb-2">When would you ideally like the project to start?</h2>
+            <div className="space-y-3 mt-6">
+              {[
+                { label: 'Urgent / safety issue', sub: 'Fence / wall has become a safety risk and needs to be addressed promptly' },
+                { label: 'Within 2\u20134 weeks' },
+                { label: 'Within 1\u20132 months' },
+                { label: 'Flexible' },
+              ].map((opt) => (
+                <OptionButton key={opt.label} label={opt.label} sub={'sub' in opt ? opt.sub : undefined} selected={data.timeline === opt.label}
+                  onClick={() => selectAndAdvance((d) => ({ ...d, timeline: opt.label }))} />
               ))}
             </div>
           </div>
@@ -455,16 +491,36 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">What matters most to you when choosing a contractor?</h2>
-            <p className="text-gray-400 text-sm mb-6">Quality is a given. Select what else matters most to you.</p>
+            <p className="text-gray-400 text-sm mb-6">Quality is a given. What else matters most?</p>
             <div className="space-y-3">
               {[
-                { label: 'Reliability and clear communication', sub: "I want to know exactly what is happening and when" },
-                { label: 'Confidence in workmanship', sub: 'I want the job done right with no issues' },
+                { label: 'Reliability and clear communication', sub: 'I want to know exactly what is happening and when' },
+                { label: 'Confidence in the final result', sub: 'I want the job done right with no issues' },
                 { label: 'Best overall value', sub: 'I want great work at a fair price' },
-                { label: 'Understanding typical costs', sub: "I am still in the research phase" },
+                { label: 'Understanding typical costs', sub: 'I want to better understand pricing for projects like this' },
               ].map((opt) => (
                 <OptionButton key={opt.label} label={opt.label} sub={opt.sub} selected={data.priority === opt.label}
                   onClick={() => selectAndAdvance((d) => ({ ...d, priority: opt.label }))} />
+              ))}
+            </div>
+          </div>
+        )
+
+      case 'referral':
+        return (
+          <div>
+            <h2 className="text-2xl font-bold text-brand-dark mb-2">How did you hear about us?</h2>
+            <div className="space-y-3 mt-6">
+              {[
+                'Google search',
+                'Social media',
+                'Word of mouth / referral',
+                'hipages',
+                'Drove past a job site',
+                'Other',
+              ].map((opt) => (
+                <OptionButton key={opt} label={opt} selected={data.referral === opt}
+                  onClick={() => selectAndAdvance((d) => ({ ...d, referral: opt }))} />
               ))}
             </div>
           </div>
@@ -474,7 +530,7 @@ export default function QuoteForm() {
         return (
           <div>
             <h2 className="text-2xl font-bold text-brand-dark mb-2">Anything else we should know?</h2>
-            <p className="text-gray-400 text-sm mb-6">Optional — but any extra detail helps us prepare for your project.</p>
+            <p className="text-gray-400 text-sm mb-6">Optional. Any extra detail helps us prepare for your project.</p>
             <textarea
               className="w-full h-36 rounded-xl border-2 border-gray-200 px-4 py-3 text-sm text-brand-dark placeholder-gray-400 focus:outline-none focus:border-brand-pink transition-colors resize-none"
               placeholder="e.g. Old fence needs removing, access is through a side gate, dog needs to be secured during work..."
@@ -487,8 +543,8 @@ export default function QuoteForm() {
       case 'photos':
         return (
           <div>
-            <h2 className="text-2xl font-bold text-brand-dark mb-2">Got any site photos?</h2>
-            <p className="text-gray-400 text-sm mb-6">Optional. Photos help us give you a more accurate quote. Up to 5 images.</p>
+            <h2 className="text-2xl font-bold text-brand-dark mb-2">Got any photos?</h2>
+            <p className="text-gray-400 text-sm mb-6">Optional. Photos, plans, or documents help us give you a more accurate quote. Up to 5 files, 15MB each.</p>
             <button
               type="button"
               onClick={() => fileRef.current?.click()}
@@ -498,23 +554,84 @@ export default function QuoteForm() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span className="text-sm font-medium">Click to upload photos</span>
-              <span className="text-xs">JPG, PNG or HEIC, max 5 photos, 10MB each</span>
+              <span className="text-sm font-medium">Click to upload files</span>
+              <span className="text-xs">JPG, PNG, HEIC, PDF, DOCX — max 5 files, 15MB each</span>
             </button>
-            <input ref={fileRef} type="file" accept="image/*" multiple className="hidden"
+            <input ref={fileRef} type="file" accept="image/*,.pdf,.docx" multiple className="hidden"
               onChange={(e) => {
-                const files = Array.from(e.target.files ?? []).slice(0, 5)
-                setData((d) => ({ ...d, photos: files }))
+                setFileError('')
+                const newFiles = Array.from(e.target.files ?? [])
+                const allowedExts = ['jpg', 'jpeg', 'png', 'webp', 'pdf', 'docx', 'heic', 'heif']
+                const allowedMimes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+                const maxSize = 15 * 1024 * 1024
+
+                const rejected: string[] = []
+                const tooLarge: string[] = []
+                const accepted: File[] = []
+
+                for (const file of newFiles) {
+                  const ext = file.name.split('.').pop()?.toLowerCase() ?? ''
+                  if (!allowedExts.includes(ext) && !allowedMimes.includes(file.type)) {
+                    rejected.push(file.name)
+                  } else if (file.size > maxSize) {
+                    tooLarge.push(file.name)
+                  } else {
+                    accepted.push(file)
+                  }
+                }
+
+                const errors: string[] = []
+                if (rejected.length > 0) errors.push(`${rejected.join(', ')} — only JPG, PNG, HEIC, PDF, and DOCX files are allowed`)
+                if (tooLarge.length > 0) errors.push(`${tooLarge.join(', ')} — exceeds the 15MB limit`)
+
+                if (errors.length > 0) {
+                  setFileError(errors.join('. '))
+                }
+
+                if (accepted.length > 0) {
+                  setData((d) => {
+                    const combined = [...d.photos, ...accepted].slice(0, 5)
+                    return { ...d, photos: combined }
+                  })
+                }
+
+                if (fileRef.current) fileRef.current.value = ''
               }}
             />
+            {fileError && (
+              <div className="mt-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600">{fileError}</div>
+            )}
             {data.photos.length > 0 && (
-              <div className="mt-4 space-y-2">
+              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {data.photos.map((f, i) => (
-                  <div key={i} className="flex items-center gap-3 bg-brand-cream rounded-lg px-4 py-2 text-sm text-brand-dark">
-                    <svg className="w-4 h-4 text-brand-pink flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14" />
-                    </svg>
-                    <span className="truncate">{f.name}</span>
+                  <div key={i} className="relative group bg-brand-cream rounded-lg overflow-hidden">
+                    {f.type.startsWith('image/') ? (
+                      <div className="w-full h-20 bg-gray-100">
+                        <img
+                          src={URL.createObjectURL(f)}
+                          alt={f.name}
+                          className="w-full h-20 object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-full h-20 flex flex-col items-center justify-center bg-gray-50">
+                        <svg className="w-6 h-6 text-brand-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="px-2 py-1.5">
+                      <p className="text-xs text-brand-dark truncate">{f.name}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setData((d) => ({ ...d, photos: d.photos.filter((_, idx) => idx !== i) }))}
+                      className="absolute top-1 right-1 w-5 h-5 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                    >
+                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                   </div>
                 ))}
               </div>
@@ -531,10 +648,7 @@ export default function QuoteForm() {
               Based on our experience, projects similar to yours typically fall between{' '}
               <span className="text-brand-pink">{range.low} and {range.high}</span>
             </h2>
-            <p className="text-gray-400 text-sm mb-8">
-              Each enquiry is reviewed before a site visit is arranged and a formal quote is prepared.
-            </p>
-            <p className="text-sm font-medium text-brand-dark mb-4">
+            <p className="text-sm font-medium text-brand-dark mb-4 mt-8">
               Does this general investment range align with what you had in mind?
             </p>
             <div className="space-y-3">
@@ -570,7 +684,7 @@ export default function QuoteForm() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-sm font-medium text-brand-dark mb-1.5">Full name</label>
+                <label className="block text-sm font-medium text-brand-dark mb-1.5">First name</label>
                 <input
                   type="text"
                   autoComplete="name"
@@ -638,30 +752,6 @@ export default function QuoteForm() {
         )
       }
 
-      case 'referral':
-        return (
-          <div>
-            <h2 className="text-2xl font-bold text-brand-dark mb-2">How did you hear about us?</h2>
-            <p className="text-gray-400 text-sm mb-6">Almost done, just one last question. <span className="text-red-400">*</span></p>
-            <div className="space-y-3">
-              {['Google', 'hipages', 'Referral', 'Repeat customer', 'Social media'].map((opt) => (
-                <OptionButton
-                  key={opt}
-                  label={opt}
-                  selected={data.referral === opt}
-                  onClick={() => setData((d) => ({ ...d, referral: opt }))}
-                />
-              ))}
-            </div>
-            {referralTouched && !data.referral && (
-              <p className="mt-3 text-xs text-red-500">Please select how you heard about us.</p>
-            )}
-            {error && (
-              <div className="mt-4 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600">{error}</div>
-            )}
-          </div>
-        )
-
       default:
         return null
     }
@@ -685,10 +775,9 @@ export default function QuoteForm() {
         {isLast ? (
           <button
             type="button"
-            disabled={submitting || (!data.referral && currentStep === 'referral')}
+            disabled={submitting}
             onClick={() => {
               setContactTouched({ name: true, phone: true, email: true, suburb: true })
-              setReferralTouched(true)
               if (canAdvance()) submit()
             }}
             className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
